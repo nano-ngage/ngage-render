@@ -1,6 +1,8 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from '../reducers/reducer';
+import {chatMiddleware} from '../socket/middleware';
 
 export default function configureStore() {
-  return createStore(reducer);
+  const createStoreWithMiddleware = applyMiddleware(chatMiddleware)(createStore);
+  return createStoreWithMiddleware(reducer);
 }

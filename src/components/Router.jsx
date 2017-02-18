@@ -10,6 +10,8 @@ import store from '../store/index';
 
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
+// var socket = io.connect('http://localhost:5500');
+// window.socket = socket;
 
 export default () => (
     <Provider store={store}>
