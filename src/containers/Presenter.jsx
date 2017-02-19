@@ -17,7 +17,7 @@ class Presenter extends Component {
     return (
       <div>
         {this.props.presentation ? (<button onClick={() => {presentation(1)}}>Start Presentation</button>) : (
-            Presentation Started!
+            'Presentation Started!'
           )
         
         }
