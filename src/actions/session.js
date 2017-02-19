@@ -1,5 +1,6 @@
 export const SESSION = 'SESSION';
 export const INVALIDROOM = 'INVALIDROOM';
+export const STARTPRES = 'STARTPRES';
 
 export function setSession(session) {
   return {
@@ -11,5 +12,11 @@ export function setInvalidRoom(invalid) {
   return {
     type: INVALIDROOM,
     invalid: invalid
+  };
+}
+export function presentation(start) {
+  return {
+    type: STARTPRES,
+    start: start
   };
 }
