@@ -1,6 +1,6 @@
 import { ANSWER } from '../actions/answer';
 
-export default function type(state = null, action) {
+export default function answer(state = null, action) {
   switch (action.type) {
     case ANSWER:
       return state = action.answer;

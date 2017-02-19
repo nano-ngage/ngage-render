@@ -3,12 +3,13 @@ import type from './type';
 import user from './user';
 import question from './question';
 import answer from './answer';
-import room from './room';
-
+import {session, invalidRoom} from './session';
 
 export default combineReducers({
   user,
   type,
   question,
-  answer
+  answer,
+  invalidRoom,
+  session
 });

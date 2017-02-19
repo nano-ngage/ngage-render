@@ -1,0 +1,9 @@
+.login {
+  display: flex;
+  justify-content: flex-end;
+}
+.room {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}

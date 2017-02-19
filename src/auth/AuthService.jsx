@@ -37,7 +37,7 @@ export default class AuthService extends EventEmitter {
           console.log(res);
           res.type ? this.props.setViewer() : this.props.setPresenter();
           this.props.setUser(res);
-          browserHistory.replace('/home')
+          browserHistory.push('/');
         })
  
         // navigate to the home route
