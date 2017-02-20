@@ -1,8 +1,8 @@
-export const ANSWER = 'ANSWER';
+export const SETANSWERS = 'SETANSWERS';
 
-export function setAnswer(answer) {
+export function setAnswers(answer) {
   return {
-    type: ANSWER,
+    type: SETANSWERS,
     answer: answer
   };
 }

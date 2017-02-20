@@ -13,7 +13,13 @@ class Viewer extends Component {
   render() {    
     return (
       <div>
-        Waiting for presentation to start...
+        <div>
+          {console.log(this.props.answers)}
+        </div>
+        {this.props.answers ? (
+          this.props.answers.map(answer => <button key={answer.id}>{answer.answer}</button>)
+          ) : 'Waiting for presentation to start...'
+        }
       </div>
     )
   }
@@ -22,7 +28,8 @@ class Viewer extends Component {
 const mapStateToProps = state => {
   return {
     type: state.type,
-    user: state.user
+    user: state.user,
+    answers: state.answer
   };
 } 
 
