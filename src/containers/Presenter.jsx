@@ -1,6 +1,7 @@
 import Inferno, {linkEvent} from 'inferno';
 import Component from 'inferno-component';
-import { presentation } from '../actions/session';
+import { setPresentation } from '../actions/session';
+import { setQuestion } from '../actions/question';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
@@ -16,8 +17,16 @@ class Presenter extends Component {
   render() {    
     return (
       <div>
-        {this.props.presentation ? (<button onClick={() => {presentation(1)}}>Start Presentation</button>) : (
-            'Presentation Started!'
+        <div>
+        {console.log(this.props.questions)}
+        </div>
+
+
+        {this.props.questions === null  ? (<button onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button>) : 
+          (
+            <div>
+              {this.props.questions.map(question => <button onClick={() => {this.props.setQuestion(question.id)}} key={question.id}>{question.question}</button>)}
+            </div>
           )
         
         }
@@ -30,12 +39,16 @@ const mapStateToProps = state => {
   return {
     session: state.session,
     user: state.user,
-    presentation: state.presentation
+    questions: state.questions
   };
 } 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {presentation}, dispatch);
+  return bindActionCreators( {setPresentation, setQuestion}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Presenter);
+
+//<button key={question.id}>{question.question}</button>
+
+//

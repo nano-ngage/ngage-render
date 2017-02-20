@@ -14,7 +14,7 @@ export function setInvalidRoom(invalid) {
     invalid: invalid
   };
 }
-export function presentation(start) {
+export function setPresentation(start) {
   return {
     type: STARTPRES,
     start: start
