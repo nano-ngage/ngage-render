@@ -1,11 +1,9 @@
-import { PRESENTER, VIEWER } from '../actions/type';
+import { SETQUESTION } from '../actions/question';
 
-export default function user(state = 1, action) {
+export default function question(state = null, action) {
   switch (action.type) {
-    case PRESENTER:
-      return state = 0;
-    case VIEWER:
-      return state = 1;
+    case SETQUESTION:
+      return state = action.qID;
     default:
       return state;
   }
