@@ -1,8 +1,8 @@
 export const SETQUESTION = 'SETQUESTION';
 
-export function setQuestion(id) {
+export function setQuestion(question) {
   return {
     type: SETQUESTION,
-    qID: id
+    question: question
   };
 }
