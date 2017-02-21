@@ -15,23 +15,29 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      room: ''
+      auth: new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', props)
+    }
+  }
+
+  componentDidMount() {
+    if (this.state.auth.loggedIn()) {
+      this.state.auth.loginUser();
     }
   }
 
 
   render() {
-    const auth = new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', this.props);
+    //const auth = new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', this.props);
     
     return (
       <div>
         <div className='login'>
-          {this.props.user ? (this.props.user.firstName + ' ' + this.props.user.lastName) : (<button onClick={auth.login.bind(this)}>Login</button>)}
+          {this.props.user ? (<div><div>{this.props.user.firstName + ' ' + this.props.user.lastName}</div><button onClick={this.state.auth.logout.bind(this)}>Logout</button></div>) : (<button onClick={this.state.auth.login.bind(this)}>Login</button>)}
         </div>
         <div className='room'>
           <label>Room Code: </label>
           <input value={this.state.room} onInput={linkEvent(this, roomVal)} type="text"></input>
-          <button onClick={() => {this.props.setSession({socket: this.state.room, userID: this.props.userID})}}>Submit</button>
+          <button onClick={() => {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})}}>Submit</button>
           <label>{this.props.invalidRoom === 'invalid' ? ('Invalid Room') : ('')}</label>
         </div>
       </div>
