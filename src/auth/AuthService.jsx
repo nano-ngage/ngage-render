@@ -33,16 +33,16 @@ export default class AuthService extends EventEmitter {
       if (error) {
         console.log('Error loading the Profile', error)
       } else {
-        getLogin(profile).then(res => {
-          console.log(res);
-          res.type ? this.props.setViewer() : this.props.setPresenter();
-          this.props.setUser(res);
-          browserHistory.push('/');
-        })
+        this.loginUser(profile);
+        browserHistory.push('/');
+        // profile.auth_id = profile.user_id;
+        // getLogin(profile).then(res => {
+
+        //   res.type ? this.props.setViewer() : this.props.setPresenter();
+        //   this.props.setUser(res);
+        //   browserHistory.push('/');
+        // })
  
-        // navigate to the home route
-        
-        console.log(profile);
         this.setProfile(profile)
       }
     })
@@ -77,6 +77,15 @@ export default class AuthService extends EventEmitter {
     return profile ? JSON.parse(localStorage.profile) : {}
   }
 
+  loginUser(prof) {
+    const profile = prof || this.getProfile();
+    profile.auth_id = profile.user_id;
+    getLogin(profile).then(res => {
+      res.type ? this.props.setViewer() : this.props.setPresenter();
+      this.props.setUser(res);
+    })
+  }
+
   setToken(idToken){
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken)
@@ -89,6 +98,7 @@ export default class AuthService extends EventEmitter {
 
   logout(){
     // Clear user token and profile data from localStorage
+    this.props.setUser(null);
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
   }

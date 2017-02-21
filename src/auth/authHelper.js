@@ -1,7 +1,4 @@
 export function getLogin(login){
-  console.log(login);
-  var myHeaders = new Headers();
-
   var myInit = { method: 'POST',
                headers: {"Content-Type": "application/json"},
                mode: 'cors',
