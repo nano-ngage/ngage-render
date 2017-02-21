@@ -3,8 +3,10 @@ import Component from 'inferno-component';
 import { setPresenter, setViewer } from '../actions/type';
 import { setUser } from '../actions/user';
 import { setSession } from '../actions/session';
+import { setAnswer, submitAnswer } from '../actions/answer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
+
 
 class Viewer extends Component {
   constructor(props) {
@@ -14,11 +16,11 @@ class Viewer extends Component {
     return (
       <div>
         <div>
-          {console.log(this.props.answers)}
+          {console.log(this.props)}
         </div>
         {this.props.answers ? (
-          this.props.answers.map(answer => <button key={answer.id}>{answer.answer}</button>)
-          ) : 'Waiting for presentation to start...'
+          this.props.answers.answers.map(answer => <button onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)
+          ) : 'Waiting for presenter to ask next question...'
         }
       </div>
     )
@@ -34,7 +36,7 @@ const mapStateToProps = state => {
 } 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {setPresenter, setViewer, setUser}, dispatch);
+  return bindActionCreators( {setPresenter, setViewer, setUser, setAnswer, submitAnswer}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Viewer);

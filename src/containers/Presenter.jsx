@@ -25,7 +25,7 @@ class Presenter extends Component {
         {this.props.questions === null  ? (<button onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button>) : 
           (
             <div>
-              {this.props.questions.map(question => <button onClick={() => {this.props.setQuestion(question.id)}} key={question.id}>{question.question}</button>)}
+              {this.props.questions.map(question => <button onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
             </div>
           )
         
