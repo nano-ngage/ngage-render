@@ -1,6 +1,7 @@
-import {setSession, setInvalidRoom, SESSION, STARTPRES} from '../actions/session';
+import {setSession, setPresSession, setInvalidRoom, SESSION, STARTPRES, PRESSESSION} from '../actions/session';
 import {SETQUESTION} from '../actions/question';
 import {setQuestions} from '../actions/questions';
+import {setResponse} from '../actions/response';
 import {setAnswers, SUBMITANSWER} from '../actions/answer';
 import io from 'socket.io-client';
 
@@ -30,12 +31,23 @@ export function chatMiddleware(store) {
     } else if (socket && action.type === STARTPRES) {
       let room = store.getState().session.socket;
       socket.emit('start', {room:room});
+    } else if (socket && action.type === PRESSESSION) {
+      fetch('http://10.6.22.194:5000/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
+        if (data !== -1) {
+          socket.emit('subscribe', {room: action.session.socket});  
+          action.session.sessionID = data.sessionID;
+          store.dispatch(setPresSession(action.session));   
+        } else {
+          store.dispatch(setPresSession(null));
+        }
+      })
     } else if (socket && action.type === SETQUESTION) {
       let room = store.getState().session.socket;
       socket.emit('askQ', {room: room, question: action.question});
     } else if (socket && action.type === SUBMITANSWER) {
+      console.log('middleware', action.answer);
       let state = store.getState();
-      socket.emit('submitResponse', JSON.stringify({room: state.session.socket, questionID: action.answer.question.questionID, content: null, answerID:action.answer.answer.answerID, userID: state.user ? state.user.userID : -1, sessionID: state.session.sessionID }));
+      socket.emit('submitResponse', {room: state.session.socket, questionID: action.answer.question.questionID, content: null, answerID:action.answer.answer.answerID, userID: state.user ? state.user.userID : -1, session: state.session.sessionID });
       store.dispatch(setAnswers(null));
     }
     // if (socket && action.type === SESSION) {
@@ -47,6 +59,8 @@ export function chatMiddleware(store) {
 }
 
 export default function (store) {
+  //104.131.147.199
+  //10.6.22.194
   socket = io.connect(`http://10.6.22.194:5500/ngage`, { path: '/sockets'});
   socket.on('connect', con => {
     socket.on('questions', data => {
@@ -54,7 +68,18 @@ export default function (store) {
     })  
     socket.on('answers', data => {
       store.dispatch(setAnswers(data));
+      data.answers.forEach(function(answer) { answer.count = 0; });
+      store.dispatch(setResponse(data));
     })  
+    socket.on('resp', data => {
+      var answerID = data.answerID;
+      // var response = store.getState().response;
+      var response = Object.assign({}, store.getState().response);
+      response.answers.forEach(answer => {if (answer.answerID === answerID) {answer.count++;}})
+      console.log('before', store.getState().response.answers[0].count);
+      store.dispatch(setResponse(response));
+      console.log('after', store.getState().response.answers[0].count);
+    }) 
   })
 
   // socket = io.connect(`http://localhost:5500/ABC`, { path: '/sockets'});
