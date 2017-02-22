@@ -6,6 +6,7 @@ import {setAnswers, SUBMITANSWER} from '../actions/answer';
 import io from 'socket.io-client';
 
 var socket = null;
+var url = `http://${DBIP}:${DBPORT}`
 
 export function chatMiddleware(store) {
   
@@ -13,7 +14,7 @@ export function chatMiddleware(store) {
     const result = next(action);
     if (socket && action.type === SESSION) {
       //replace with check for valid room
-      fetch('http://10.6.22.194:5000/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
+      fetch(url + '/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
         if (data !== -1) {
           socket.emit('subscribe', {room: action.session.socket});  
           action.session.sessionID = data.sessionID;
@@ -32,7 +33,7 @@ export function chatMiddleware(store) {
       let room = store.getState().session.socket;
       socket.emit('start', {room:room});
     } else if (socket && action.type === PRESSESSION) {
-      fetch('http://10.6.22.194:5000/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
+      fetch(url + '/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
         if (data !== -1) {
           socket.emit('subscribe', {room: action.session.socket});  
           action.session.sessionID = data.sessionID;
@@ -61,7 +62,8 @@ export function chatMiddleware(store) {
 export default function (store) {
   //104.131.147.199
   //10.6.22.194
-  socket = io.connect(`http://10.6.22.194:5500/ngage`, { path: '/sockets'});
+
+  socket = io.connect(`http://${SOCKETIP}:${SOCKETPORT}/ngage`, { path: '/sockets'});
   socket.on('connect', con => {
     socket.on('questions', data => {
       store.dispatch(setQuestions(data));
