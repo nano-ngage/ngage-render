@@ -9,6 +9,7 @@ export function setAnswers(answer) {
 }
 
 export function submitAnswer(answer) {
+  console.log('submitAnswer', answer);
   return {
     type: SUBMITANSWER,
     answer: answer

@@ -15,11 +15,15 @@ class Viewer extends Component {
   render() {    
     return (
       <div>
-        <div>
-          {console.log(this.props)}
-        </div>
         {this.props.answers ? (
-          this.props.answers.answers.map(answer => <button onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)
+          <div>
+            <div>
+              {this.props.answers.question.question}
+            </div>
+            <div>
+            {this.props.answers.answers.map(answer => <button onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)}
+            </div>
+          </div>
           ) : 'Waiting for presenter to ask next question...'
         }
       </div>

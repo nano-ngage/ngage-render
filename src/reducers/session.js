@@ -1,4 +1,4 @@
-import { SESSION, INVALIDROOM, STARTPRES } from '../actions/session';
+import { SESSION, INVALIDROOM, STARTPRES, PRESSESSION, SETPRESSESSION } from '../actions/session';
 
 export function session(state = null, action) {
   switch (action.type) {
@@ -22,6 +22,17 @@ export function presentation(state = 0, action) {
   switch (action.type) {
     case STARTPRES:
       return state = action.start;
+    default:
+      return state;
+  }
+}
+
+export function pressession(state = null, action) {
+  switch (action.type) {
+    case PRESSESSION:
+      return state = action.session;
+    case SETPRESSESSION:
+      return state = action.session;
     default:
       return state;
   }
