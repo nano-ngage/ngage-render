@@ -32,7 +32,7 @@ export default () => (
           <IndexRoute component={ Home }/>
           <Route path="/presenter" component={ Presenter } onEnter = {() => {sessionOnly(store)}}/>
           <Route path="/viewer" component={ Viewer } onEnter = {() => {sessionOnly(store)}}/>
-          <Route path="/presentation" component={ Presentation }/>
+          <Route path="/presentation/:socket" component={ Presentation }/>
           <Route path="*" component={ NoMatch }/>
         </Route>
       </Router>
