@@ -9,8 +9,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 3000:3000 nanongage/ngage-render; sleep 10
-    - curl --retry 10 --retry-delay 5 -v http://localhost:3000/
+    - echo "No Testing because it is dependent on ngagedb and ngagesocket to run"
 
 deployment:
   hub:
