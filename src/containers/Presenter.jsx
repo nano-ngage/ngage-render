@@ -12,18 +12,18 @@ class Presenter extends Component {
     super(props)
   }
 
-  render() {    
+  render() {
     return (
       <div className="content">
         <div className="center">
-          <div className="presenter"><p className="welcome">Presentation Title</p></div>
-          {this.props.questions === null  ? 
+          <div className="presenter"><p className="welcome">{this.props.session.presentationTitle}</p></div>
+          {this.props.questions === null  ?
             (
               <div className="presenter"><button className='button' onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button></div>
-            ) : 
+            ) :
             (
               <div className="presenter">
-                {this.props.questions.map(question => <button className='button' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+                {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
               </div>
             )
           }
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
     user: state.user,
     questions: state.questions
   };
-} 
+}
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators( {setPresentation, setQuestion}, dispatch);
