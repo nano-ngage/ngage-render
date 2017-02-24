@@ -9,22 +9,23 @@ var socket = null;
 var url = `http://${DBIP}:${DBPORT}`
 
 export function chatMiddleware(store) {
-  
+
   return next => action => {
     const result = next(action);
     if (socket && action.type === SESSION) {
       //replace with check for valid room
       fetch(url + '/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
         if (data !== -1) {
-          socket.emit('subscribe', {room: action.session.socket});  
+          socket.emit('subscribe', {room: action.session.socket});
           action.session.sessionID = data.sessionID;
-          var user = store.getState().user; 
+          action.session.presentationTitle = data.title;
+          var user = store.getState().user;
           if (user && user.userID && (user.userID === data.userID)) {
-            browserHistory.push('/presenter');  
+            browserHistory.push('/presenter');
           } else {
             browserHistory.push('/viewer');
           }
-          store.dispatch(setInvalidRoom(0));          
+          store.dispatch(setInvalidRoom(0));
         } else {
           store.dispatch(setInvalidRoom(1));
         }
@@ -35,9 +36,9 @@ export function chatMiddleware(store) {
     } else if (socket && action.type === PRESSESSION) {
       fetch(url + '/sByS/' + action.session.socket).then(data => data.json()).then(data =>{
         if (data !== -1) {
-          socket.emit('subscribe', {room: action.session.socket});  
+          socket.emit('subscribe', {room: action.session.socket});
           action.session.sessionID = data.sessionID;
-          store.dispatch(setPresSession(action.session));   
+          store.dispatch(setPresSession(action.session));
         } else {
           store.dispatch(setPresSession(null));
         }
@@ -54,7 +55,7 @@ export function chatMiddleware(store) {
     // if (socket && action.type === SESSION) {
     //   socket.emit('session', action.session);
     // }
- 
+
     return result;
   };
 }
@@ -67,12 +68,12 @@ export default function (store) {
   socket.on('connect', con => {
     socket.on('questions', data => {
       store.dispatch(setQuestions(data));
-    })  
+    })
     socket.on('answers', data => {
       store.dispatch(setAnswers(data));
       data.answers.forEach(function(answer) { answer.count = 0; });
       store.dispatch(setResponse(data));
-    })  
+    })
     socket.on('resp', data => {
       var answerID = data.answerID;
       // var response = store.getState().response;
@@ -81,7 +82,7 @@ export default function (store) {
       console.log('before', store.getState().response.answers[0].count);
       store.dispatch(setResponse(response));
       console.log('after', store.getState().response.answers[0].count);
-    }) 
+    })
   })
 
   // socket = io.connect(`http://localhost:5500/ABC`, { path: '/sockets'});
@@ -89,15 +90,15 @@ export default function (store) {
   // socket.emit("subscribe", { room: "global" });
   // socket.on('setRoom', room => {
   //   if (room) {
-  //     store.dispatch(setRoom(room)); 
-  //     var userType = store.getState().type; 
+  //     store.dispatch(setRoom(room));
+  //     var userType = store.getState().type;
   //     if (userType === 0) {
-  //       browserHistory.push('/presenter');  
+  //       browserHistory.push('/presenter');
   //     } else {
   //       browserHistory.push('/viewer');
   //     }
-      
+
   //   }
-    
+
   // });
 }
