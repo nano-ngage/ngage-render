@@ -3,8 +3,7 @@ import Component from 'inferno-component';
 
 export default (props) => {
   return (
-    <div>
-      <h1>Welcome to nGage</h1>
+    <div classname="center">
       <div>{props.children}</div>
     </div>
     )

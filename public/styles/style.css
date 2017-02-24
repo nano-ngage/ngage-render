@@ -1,17 +1,81 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100vmin;
+  height: 90vmin;
+}
+.welcome {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #83CC6D;
+    text-align: center;
+}
+.normal {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #83CC6D;
+    text-align: center;
+}
 .login {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  margin: 5vmin;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vmin;
+  margin-bottom: 5vmin;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #83CC6D;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: #A1FB86;
 }
 .room {
   display: flex;
   justify-content: center;
   flex-direction: row;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #83CC6D;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
+.codeInput { 
+  display: flex;
+  background-color: #ffffff;  
+  font-size: 1.7rem;
+  font-weight: 300;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #83CC6D;
+  width: 15vw;
+  height: 6vmin;
+  padding: 3px 7px;
+  margin-right: 10px;
+  border: 2px solid #83CC6D;
+  border-radius: 5px;
+}
+@media screen and (max-width: 700px) {
+  .button, .codeInput {
+    font-size: 1rem;
+  }
+}
 .chart rect {
   fill: steelblue;
 }
-
 .chart text {
   fill: white;
   font: 10px sans-serif;
