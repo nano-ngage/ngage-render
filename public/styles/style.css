@@ -23,6 +23,11 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.center-waiting {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .normal {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
@@ -59,6 +64,31 @@
 .button:hover {
   background-color: #A1FB86;
 }
+
+.questionButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 7vmin;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #83CC6D;
+  border: none;
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.questionButtons:hover {
+  background-color: #A1FB86;
+}
+
 .answerButtons {
   display: flex;
   justify-content: center;
@@ -89,9 +119,9 @@
   color: #83CC6D;
   font-family: Arial, Helvetica, sans-serif;
 }
-.codeInput { 
+.codeInput {
   display: flex;
-  background-color: #ffffff;  
+  background-color: #ffffff;
   font-size: 1.7rem;
   font-weight: 300;
   font-family: Arial, Helvetica, sans-serif;
@@ -118,4 +148,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   color: #83CC6D;
+}
+
+.loading {
+  width: 35%;
+  height: 35%;
 }
