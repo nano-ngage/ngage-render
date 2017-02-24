@@ -12,7 +12,7 @@ class Viewer extends Component {
   constructor(props) {
     super(props)
   }
-  render() {    
+  render() {
     return (
       <div className="content">
         {this.props.answers ? (
@@ -23,7 +23,7 @@ class Viewer extends Component {
             {this.props.answers.answers.map(answer => <button className="answerButtons" onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)}
             </div>
           </div>
-          ) :  <div className="center"><p className="normal">Waiting for presenter to ask next question...</p></div>
+          ) :  <div className="center-waiting"><p className="normal">Waiting for the next question...</p><div className="center"><img src="styles/ripple.gif" className="loading"/></div></div>
         }
       </div>
     )
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
     user: state.user,
     answers: state.answer
   };
-} 
+}
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators( {setPresenter, setViewer, setUser, setAnswer, submitAnswer}, dispatch);
