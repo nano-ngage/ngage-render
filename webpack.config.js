@@ -27,7 +27,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'DBIP': JSON.stringify(process.env.DBIP || 'localhost'),
       'DBPORT': JSON.stringify(process.env.DBPORT || 5000),
-      'SOCKETIP': JSON.stringify(process.env.SOCKETIP || 'locahost'),
+      'SOCKETIP': JSON.stringify(process.env.SOCKETIP || 'localhost'),
       'SOCKETPORT': JSON.stringify(process.env.SOCKETPORT || 5500)
     }),
   ]

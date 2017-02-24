@@ -14,17 +14,16 @@ class Viewer extends Component {
   }
   render() {    
     return (
-      <div>
+      <div className="content">
         {this.props.answers ? (
           <div>
-            <div>
-              {this.props.answers.question.question}
+            <div className="center"><p className="normal">{this.props.answers.question.question} <br /><br/></p>
             </div>
-            <div>
-            {this.props.answers.answers.map(answer => <button onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)}
+            <div className="center">
+            {this.props.answers.answers.map(answer => <button className="answerButtons" onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)}
             </div>
           </div>
-          ) : 'Waiting for presenter to ask next question...'
+          ) :  <div className="center"><p className="normal">Waiting for presenter to ask next question...</p></div>
         }
       </div>
     )

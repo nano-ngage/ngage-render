@@ -26,18 +26,22 @@ class Presentation extends Component {
   render() {    
     return (
       <div>
-        <div>
+      <div className="content">
         {this.props.user ? (this.props.pressession ? (this.props.response ? (
           <div>
-            <div>Room Code:{this.props.params.socket}</div>
+            <div className="center"><p className="welcome">Room Code:{this.props.params.socket}</p></div>
             <div>
-              {this.props.response.question.question}
+              <p className="welcome">{this.props.response.question.question}</p>
             </div>
+            <div className="zoom">
             <svg class="chart" width="420" height="120">
-              {this.props.response.answers.map((answer, index) => <g transform={"translate(0," + 20*index + ")"}><rect width={(20 + answer.count * 30).toString()} height="19"></rect><text x={(15 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}</text></g>)}
+              {this.props.response.answers.map((answer, index) => <g transform={"translate(0," + 20*index + ")"}>
+                <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
+                <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count}</text></g>)}
             </svg>
+            </div>
           </div>
-          ) : <div>Room Code: {this.props.params.socket}</div>) : 'Not a valid session') : 'Please login'}
+          ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>) : <div className="center"><p className="normal">Not a valid session</p></div>) : <div className="center"><p className="normal">Please login</p></div>}
         </div>
       </div>
     )

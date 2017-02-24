@@ -15,14 +15,17 @@ class Presenter extends Component {
   render() {    
     return (
       <div className="content">
-        <div className="center"><p className="normal">Presentation Title</p>
-          {this.props.questions === null  ? (<button className='button' onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button>) : 
+        <div className="center">
+          <div className="presenter"><p className="welcome">Presentation Title</p></div>
+          {this.props.questions === null  ? 
             (
-              <div>
+              <div className="presenter"><button className='button' onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button></div>
+            ) : 
+            (
+              <div className="presenter">
                 {this.props.questions.map(question => <button className='button' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
               </div>
             )
-          
           }
         </div>
       </div>

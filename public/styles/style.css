@@ -6,11 +6,22 @@
   height: 90vmin;
 }
 .welcome {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    color: #83CC6D;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #83CC6D;
+  text-align: center;
+}
+.presenter {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 20px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .normal {
     font-family: Arial, Helvetica, sans-serif;
@@ -18,6 +29,10 @@
     font-weight: 600;
     color: #83CC6D;
     text-align: center;
+}
+.zoom {
+  margin: 5vmin;
+  zoom: 200%;
 }
 .login {
   display: flex;
@@ -29,7 +44,6 @@
   justify-content: center;
   align-items: center;
   height: 7vmin;
-  margin-bottom: 5vmin;
   padding-left: 15px;
   padding-right: 15px;
   background-color: #83CC6D;
@@ -43,6 +57,27 @@
   border-radius: 5px;
 }
 .button:hover {
+  background-color: #A1FB86;
+}
+.answerButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vmin;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #83CC6D;
+  border: none;
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.answerButtons:hover {
   background-color: #A1FB86;
 }
 .room {
@@ -69,15 +104,18 @@
   border-radius: 5px;
 }
 @media screen and (max-width: 700px) {
-  .button, .codeInput {
+  .button, .answerButtons, .codeInput {
     font-size: 1rem;
   }
 }
 .chart rect {
-  fill: steelblue;
+  fill: #83CC6D;
 }
 .chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+  fill: #83CC6D;
+  /*font: 10px sans-serif;*/
+  /*text-anchor: end;*/
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: #83CC6D;
 }
