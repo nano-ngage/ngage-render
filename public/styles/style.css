@@ -122,7 +122,7 @@
   border-radius: 5px;
 }
 @media screen and (max-width: 700px) {
-  .button, .codeInput {
+  .button, .questionButtons, .answerButtons, .codeInput {
     font-size: 1rem;
   }
 }
@@ -163,8 +163,8 @@
 .question-container {
   display: flex;
   flex-direction: column;
-  margin-left: 40vmin;
-  margin-right: 40vmin;
+  margin-left: 20vmin;
+  margin-right: 20vmin;
 }
 .to-ask {
   display:flex;
@@ -176,9 +176,11 @@
 .questionButtons {
   display:flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
-  height: 7vmin;
-  padding: 15px;
+  flex-shrink: 0;
+  /*height: 7vmin;*/
+  padding: 3vmin;
   background-color: #83CC6D;
   border: none;
   margin: 7px;
