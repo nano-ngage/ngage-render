@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   flex-basis: 100vmin;
-  height: 90vmin;
 }
 .welcome {
   font-family: Arial, Helvetica, sans-serif;
@@ -15,6 +14,7 @@
 .presenter {
   display: flex;
   justify-content: center;
+  align-content: flex-start;
   width: 100vw;
   margin: 20px;
 }
@@ -64,42 +64,16 @@
 .button:hover {
   background-color: #A1FB86;
 }
-
-.questionButtons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 7vmin;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: #83CC6D;
-  border: none;
-  margin: 10px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.questionButtons:hover {
-  background-color: #A1FB86;
-}
-
 .answerButtons {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 7vmin;
-  padding-left: 15px;
-  padding-right: 15px;
+  height: 175px;
+  width: 175px;
   background-color: #83CC6D;
   border: none;
   margin: 10px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
@@ -109,6 +83,10 @@
 }
 .answerButtons:hover {
   background-color: #A1FB86;
+}
+.answerButtons:active {
+  font-size: 125%;
+  /*border-radius: 100px;*/
 }
 .room {
   display: flex;
@@ -149,8 +127,66 @@
   font-size: 1rem;
   color: #83CC6D;
 }
-
 .loading {
-  width: 35%;
-  height: 35%;
+  width: 120px;
+  height: 120px;
+}
+
+.invalid {
+  color: #ff6666;
+}
+
+.q-header {
+  font-size: 2.5rem;
+  width:100%;
+}
+.questions {
+  display: flex;
+  justify-content: flex-start;
+  align-content:center;
+  flex-direction: column;
+  width: 100%;
+}
+.questions-container {
+  display: flex;
+  justify-content: flex-start;
+  align-content:flex-start;
+  flex-direction: row;
+  width: 100%;
+}
+.to-ask {
+  display:flex;
+  flex-direction: column;
+  margin-left: 100px;
+  flex: 1;
+}
+.asked-questions {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  flex: 1;
+}
+.questionButtons {
+  display:flex;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  height: 7vmin;
+  padding: 15px;
+  background-color: #83CC6D;
+  border: none;
+  margin: 7px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.questionButtons:hover {
+  background-color: #A1FB86;
+}
+.questionButtons:active {
+    font-size: 115%;
 }
