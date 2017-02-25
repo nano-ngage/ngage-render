@@ -26,6 +26,7 @@
 .center-waiting {
   display: flex;
   justify-content: center;
+  margin-top:30vmin;
   flex-direction: column;
 }
 .normal {
