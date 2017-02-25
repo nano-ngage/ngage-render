@@ -68,12 +68,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 125px;
-  width: 125px;
+  height: 30vmin;
+  width: 30vmin;
   background-color: #83CC6D;
   border: none;
   margin: 5px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
@@ -91,8 +91,9 @@
 .answer-container {
   display: flex;
   justify-content: center;
-  margin-left: 15vmin;
-  margin-right: 15vmin;
+  margin-top:10vmin;
+  margin-left: 10vmin;
+  margin-right: 10vmin;
   flex-wrap:wrap;
 
 }
