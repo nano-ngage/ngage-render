@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 100vmin;
+  flex-basis: 100%;
 }
 .welcome {
   font-family: Arial, Helvetica, sans-serif;
@@ -138,37 +138,27 @@
 
 .q-header {
   font-size: 2.5rem;
-  width:100%;
+  /*padding: 0px;*/
+  /*margin:0px;*/
 }
 .questions {
   display: flex;
-  justify-content: flex-start;
-  align-content:center;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
 }
 .questions-container {
   display: flex;
-  justify-content: flex-start;
-  align-content:flex-start;
   flex-direction: row;
-  width: 100%;
 }
 .to-ask {
   display:flex;
   flex-direction: column;
-  margin-left: 100px;
-  flex: 1;
-}
-.asked-questions {
-  display: flex;
-  flex-direction: column;
-  margin-left: 100px;
-  flex: 1;
+  flex: 4;
+  margin-left: 10vmin;
+  margin-right: 10vmin;
 }
 .questionButtons {
   display:flex;
-  width: 60%;
   justify-content: center;
   align-items: center;
   height: 7vmin;
