@@ -16,7 +16,7 @@
   justify-content: center;
   align-content: flex-start;
   width: 100vw;
-  margin: 20px;
+  margin-top: 20px;
 }
 .center {
   display: flex;
@@ -68,11 +68,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 175px;
-  width: 175px;
+  height: 125px;
+  width: 125px;
   background-color: #83CC6D;
   border: none;
-  margin: 10px;
+  margin: 5px;
   font-size: 2rem;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
@@ -87,6 +87,14 @@
 .answerButtons:active {
   font-size: 125%;
   /*border-radius: 100px;*/
+}
+.answer-container {
+  display: flex;
+  justify-content: center;
+  margin-left: 15vmin;
+  margin-right: 15vmin;
+  flex-wrap:wrap;
+
 }
 .room {
   display: flex;
@@ -112,7 +120,7 @@
   border-radius: 5px;
 }
 @media screen and (max-width: 700px) {
-  .button, .answerButtons, .codeInput {
+  .button, .codeInput {
     font-size: 1rem;
   }
 }
