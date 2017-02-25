@@ -23,7 +23,7 @@ class Presenter extends Component {
             ) :
             (
               <div className="questions">
-                <h1 className="normal q-header">Questions:</h1>
+                <h1 className="normal center">Questions:</h1>
                 <div className="question-container">
                   {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
                 </div>
