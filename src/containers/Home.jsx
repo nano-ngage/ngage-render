@@ -37,7 +37,7 @@ class Home extends Component {
           {this.props.invalidRoom === 'invalid' ? (<div className='login'>
           <p className="normal animated fadeInDown invalid">Invalid Room</p></div>) : ('')}
         <div className='room'>
-          <input className='codeInput' value={this.state.room} onInput={linkEvent(this, roomVal)} type="text" placeholder="Room Code"
+          <input className='codeInput' value={this.state.room} onInput={linkEvent(this, roomVal)} type="text" placeholder="Code"
             onKeyPress={(e) => {if (e.which === 13) {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})};}}></input>
           <button className='button' onClick={() => {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})}}>Enter</button>
         </div>
