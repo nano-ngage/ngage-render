@@ -24,16 +24,17 @@ class Presenter extends Component {
             (
               <div className="questions">
               <h1 className="normal q-header">Questions</h1>
-              <div className="questions-container">
-              <div className="to-ask">
-                <h3>Queue</h3>
-                {this.props.questions.map(question => <button className='button questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+                <div className="questions-container">
+                  <div className="to-ask">
+                    <h3 className="normal">Queue</h3>
+                    {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+                  </div>
+                  <div className="to-ask">
+                    <h3 className="normal">Asked Qs</h3>
+                    {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+                  </div>
+                </div>
               </div>
-              <div className="asked-questions">
-                <h3>Asked Questions</h3>
-                {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
-              </div>
-              </div></div>
             )
           }
         </div>
