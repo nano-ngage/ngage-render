@@ -22,9 +22,18 @@ class Presenter extends Component {
               <div className="presenter"><button className='button' onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button></div>
             ) :
             (
-              <div className="presenter">
+              <div className="questions">
+              <h1 className="normal q-header">Questions</h1>
+              <div className="questions-container">
+              <div className="to-ask">
+                <h3>Queue</h3>
+                {this.props.questions.map(question => <button className='button questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+              </div>
+              <div className="asked-questions">
+                <h3>Asked Questions</h3>
                 {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
               </div>
+              </div></div>
             )
           }
         </div>
