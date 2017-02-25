@@ -9,6 +9,8 @@ ARG DBIP
 ARG SOCKETIP
 ENV DBIP $DBIP
 ENV SOCKETIP $SOCKETIP
+run echo ${DBIP}
+run echo ${SOCKETIP}
 # Bundle app source
 COPY . /usr/src/render
 RUN npm run build
