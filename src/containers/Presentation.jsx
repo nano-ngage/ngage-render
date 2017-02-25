@@ -14,8 +14,11 @@ class Presentation extends Component {
     super(props);
     this.state = {
       auth: new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', props)
+      // total: 0
     }
+    // this.updateTotal = this.updateTotal.bind(this);
   }
+
   componentDidMount() {
     if (this.state.auth.loggedIn()) {
       this.state.auth.loginUser();
@@ -23,9 +26,12 @@ class Presentation extends Component {
     }
   }
 
+  // updateTotal(count) {
+  //   this.setState({total: count});
+  // }
+
   render() {
-    var i = 0;
-    var colors = ["#ffb1b1", "#ffd380", "#71b2fb", " #b195c6"];
+    var total = 0;
     return (
       <div>
       <div className="content">
@@ -35,13 +41,19 @@ class Presentation extends Component {
             <div>
               <p className="welcome">{this.props.response.question.question}</p>
             </div>
+
             <div className="zoom">
             <svg class="chart" width="420" height="120">
-              {this.props.response.answers.map((answer, index) => <g transform={"translate(0," + 20*index + ")"}>
+              {this.props.response.answers.map((answer, index) => {
+                total += answer.count;
+                // var total = this.state.total + answer.count;
+                // updateTotal(total);
+                return <g transform={"translate(0," + 20*index + ")"}>
                 <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
-                <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count}</text></g>)}
+                <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count} </text></g>})}
             </svg>
             </div>
+            <div className="normal">Total Responses: {total}</div>
           </div>
           ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>) : <div className="center"><p className="normal">Not a valid session</p></div>) : <div className="center"><p className="normal">Please login</p></div>}
         </div>
