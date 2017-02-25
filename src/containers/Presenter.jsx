@@ -13,6 +13,8 @@ class Presenter extends Component {
   }
 
   render() {
+    var i = 1;
+    var colors = ["#ffb1b1", "#ffd380", "#71b2fb", " #b195c6"];
     return (
       <div className="content">
         <div className="center">
@@ -23,9 +25,14 @@ class Presenter extends Component {
             ) :
             (
               <div className="questions">
-                <h1 className="normal center">Questions:</h1>
                 <div className="question-container">
-                  {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+                  {this.props.questions.map(question => {
+                    if (i < 4) {
+                      i++;
+                    } else {
+                      i = 1;
+                    }
+                    return <button className='questionButtons' style={"background-color: "+ colors[i - 1]} onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>})}
                 </div>
               </div>
             )
