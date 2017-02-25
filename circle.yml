@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --buildarg DBIP=$DBIP SOCKETIP=$SOCKETIP -t nanongage/ngage-render .
+    - docker build --build-arg DBIP=$DBIP SOCKETIP=$SOCKETIP -t nanongage/ngage-render .
 
 test:
   override:
