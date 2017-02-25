@@ -23,13 +23,15 @@ class Presentation extends Component {
     }
   }
 
-  render() {    
+  render() {
+    var i = 0;
+    var colors = ["#ffb1b1", "#ffd380", "#71b2fb", " #b195c6"];
     return (
       <div>
       <div className="content">
         {this.props.user ? (this.props.pressession ? (this.props.response ? (
           <div>
-            <div className="center"><p className="welcome">Room Code:{this.props.params.socket}</p></div>
+            <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
             <div>
               <p className="welcome">{this.props.response.question.question}</p>
             </div>
@@ -55,7 +57,7 @@ const mapStateToProps = state => {
     response: state.response,
     pressession: state.pressession
   };
-} 
+}
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators( {setPresenter, setViewer, setUser, startPresSession, setResponse}, dispatch);
