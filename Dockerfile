@@ -1,14 +1,17 @@
-FROM netczuk/node-yarn
+FROM node:boron
 # Create app directory
 RUN mkdir -p /usr/src/render
 WORKDIR /usr/src/render
 # Install app dependencies
 COPY package.json /usr/src/render/
-COPY yarn.lock /usr/src/render/
-RUN yarn
+RUN npm install
+ARG DBIP
+ARG SOCKETIP
+ENV DBIP $DBIP
+ENV SOCKETIP $SOCKETIP
 # Bundle app source
 COPY . /usr/src/render
-RUN yarn build
+RUN npm run build
 RUN rm -rf /usr/src/render/src
 EXPOSE 3000
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]
