@@ -13,7 +13,7 @@ class Viewer extends Component {
     super(props)
   }
   render() {
-    var i = 0;
+    var i = 1;
     var colors = ["#ffb1b1", "#ffd380", "#71b2fb", " #b195c6"];
     return (
       <div className="content">
@@ -26,7 +26,7 @@ class Viewer extends Component {
               if (i < 4) {
                 i++;
               } else {
-                i = 0;
+                i = 1;
               }
               return <button className="answerButtons" style={"background-color: "+ colors[i - 1]} onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>})}
             </div>
