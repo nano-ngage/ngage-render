@@ -16,23 +16,16 @@ class Presenter extends Component {
     return (
       <div className="content">
         <div className="center">
-          <div className="presenter"><p className="welcome">{this.props.session.presentationTitle}</p></div>
+          <div className="presenter welcome">{this.props.session.presentationTitle}</div>
           {this.props.questions === null  ?
             (
               <div className="presenter"><button className='button' onClick={() => {this.props.setPresentation(1)}}>Start Presentation</button></div>
             ) :
             (
               <div className="questions">
-              <h1 className="normal q-header">Questions</h1>
-                <div className="questions-container">
-                  <div className="to-ask">
-                    <h3 className="normal">Queue</h3>
-                    {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
-                  </div>
-                  <div className="to-ask">
-                    <h3 className="normal">Asked Qs</h3>
-                    {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
-                  </div>
+                <h1 className="normal q-header">Questions:</h1>
+                <div className="question-container">
+                  {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
                 </div>
               </div>
             )
@@ -60,3 +53,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(Presenter);
 //<button key={question.id}>{question.question}</button>
 
 //
+// DOUBLE COLUMN QUESTIONS - goes under className="questions"
+// <div className="questions-container">
+//   <div className="to-ask">
+//     <h3 className="normal">Queue</h3>
+//     {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+//   </div>
+//   <div className="to-ask">
+//     <h3 className="normal">Asked Qs</h3>
+//     {this.props.questions.map(question => <button className='questionButtons' onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>)}
+//   </div>
+// </div>
