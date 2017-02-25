@@ -13,17 +13,21 @@ class Viewer extends Component {
     super(props)
   }
   render() {
+    var i = 0;
+    var colors = ["#ffd380", "#71b2fb", "#b195c6", "#ffb1b1"];
     return (
       <div className="content">
         {this.props.answers ? (
           <div>
-            <div className="center"><p className="normal">{this.props.answers.question.question} <br /><br/></p>
+            <div className="center"><p className="normal"><h1>{this.props.answers.question.question}</h1> <br /><br/></p>
             </div>
             <div className="center">
-            {this.props.answers.answers.map(answer => <button className="answerButtons" onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>)}
+            {this.props.answers.answers.map(answer => {
+              i++;
+              return <button className="answerButtons" style={"background-color: "+ colors[i]} onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>})}
             </div>
           </div>
-          ) :  <div className="center-waiting"><p className="normal">Waiting for the next question...</p><div className="center"><img src="styles/ripple.gif" className="loading"/></div></div>
+          ) :  <div className="center-waiting"><p className="normal">Waiting for question...</p><div className="center"><img src="styles/ripple.gif" className="loading"/></div></div>
         }
       </div>
     )
