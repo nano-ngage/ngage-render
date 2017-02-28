@@ -15,7 +15,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      auth: new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', props)
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props)
     }
   }
 
