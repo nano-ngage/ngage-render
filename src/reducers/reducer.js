@@ -3,7 +3,7 @@ import type from './type';
 import user from './user';
 import question from './question';
 import {answer, submitAnswer} from './answer';
-import {questions} from './questions';
+import {questions, askedQuestions} from './questions';
 import {response} from './response';
 import {session, invalidRoom, presentation, pressession} from './session';
 
@@ -12,6 +12,7 @@ export default combineReducers({
   type,
   question,
   questions,
+  askedQuestions,
   answer,
   submitAnswer,
   session,
