@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -31,6 +32,13 @@ module.exports = {
       'SOCKETPORT': JSON.stringify(process.env.SOCKETPORT || 5500),
       'AUTH0_CLIENT_ID': JSON.stringify(process.env.AUTH0_CLIENT_ID || 'qjGwtKBFdcc0chj52rGul3p3nEa0LW3J'),
       'AUTH0_DOMAIN': JSON.stringify(process.env.AUTH0_DOMAIN || 'saivickna.auth0.com'),
+    }),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
     }),
   ]
 };
