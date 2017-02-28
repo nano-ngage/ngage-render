@@ -1,6 +1,6 @@
 import {setSession, setPresSession, setInvalidRoom, SESSION, STARTPRES, PRESSESSION} from '../actions/session';
 import {SETQUESTION} from '../actions/question';
-import {setQuestions} from '../actions/questions';
+import {setQuestions, setAskedQuestions} from '../actions/questions';
 import {setResponse} from '../actions/response';
 import {setAnswers, SUBMITANSWER} from '../actions/answer';
 import io from 'socket.io-client';
@@ -38,6 +38,8 @@ export function chatMiddleware(store) {
         if (data !== -1) {
           socket.emit('subscribe', {room: action.session.socket});
           action.session.sessionID = data.sessionID;
+          action.session.presentationTitle = data.title;
+          console.log('*************', action.session.presentationTitle);
           store.dispatch(setPresSession(action.session));
         } else {
           store.dispatch(setPresSession(null));
