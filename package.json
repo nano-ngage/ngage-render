@@ -11,6 +11,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "auth0-js": "7.6.1",
     "auth0-lock": "^10.11.0",
     "events": "^1.1.1",
     "history": "^4.5.1",

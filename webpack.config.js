@@ -30,8 +30,8 @@ module.exports = {
       'DBPORT': JSON.stringify(process.env.DBPORT || 5000),
       'SOCKETIP': JSON.stringify(process.env.SOCKETIP || '104.131.147.199'),
       'SOCKETPORT': JSON.stringify(process.env.SOCKETPORT || 5500),
-      'AUTH0_CLIENT_ID': JSON.stringify(process.env.AUTH0_CLIENT_ID || 'qjGwtKBFdcc0chj52rGul3p3nEa0LW3J'),
-      'AUTH0_DOMAIN': JSON.stringify(process.env.AUTH0_DOMAIN || 'saivickna.auth0.com'),
+      'AUTH0_CLIENT_ID': JSON.stringify(process.env.AUTH0_CLIENT_ID || 'Wnw35lcs32PF5TnkuSu7Aqb3j0sMP0Z4'),
+      'AUTH0_DOMAIN': JSON.stringify(process.env.AUTH0_DOMAIN || 'joraffe.auth0.com'),
     }),
     new CompressionPlugin({
       asset: "[path].gz[query]",
