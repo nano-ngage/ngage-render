@@ -1,6 +1,7 @@
 import { setSession, setPresSession, setInvalidRoom, SESSION, STARTPRES, PRESSESSION } from '../actions/session';
 import { SETQUESTION } from '../actions/question';
-import { setQuestions, setAskedQuestions } from '../actions/questions';
+import { setQuestions , setAskedQuestions } from '../actions/questions';
+import { setAudQuestions, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../actions/audquestions';
 import { setResponse } from '../actions/response';
 import { setAnswers, setShowAnswer, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
 import io from 'socket.io-client';
@@ -93,6 +94,24 @@ export function chatMiddleware(store) {
 
       store.dispatch(setAnswers(null));
 
+    } else if (socket && action.type === SUBMITAUDQUESTION) {
+
+      let state = store.getState();
+      socket.emit('submitAudQuestion', {
+        room: state.session.socket,
+        content: action.audquestion.content,
+        userID: state.user ? state.user.userID : -1,
+        sessionID: state.session.sessionID
+      });
+
+    } else if (socket && action.type === UPVOTEAUDQUESTION) {
+
+      let state = store.getState();
+      socket.emit('upvoteAudQuestion', {
+        room: state.session.socket,
+        audquestion: action.audquestion
+      });
+
     }
     return result;
   };
@@ -138,6 +157,26 @@ export default function (store) {
         });
       }
       store.dispatch(setResponse(response));
+    });
+
+    socket.on('audquestions', data => {
+      const newAudQuestions = Object.assign({}, store.getState().audquestions || []);
+      newAudQuestions.push(data);
+
+      store.dispatch(setAudQuestions(newAudQuestions));
+    });
+
+    socket.on('upvote', data => {
+      const audQuestionID = data.audQuestionID;
+      const audquestions = Object.assign({}, store.getState().audquestions);
+
+      audquestions.forEach(audQ => {
+        if (audQ.audQuestionID === audQuestionID) {
+          audQ.upvotes++;
+        }
+      });
+
+      store.dispatch(setAudQuestions(audquestions))
     });
 
   });
