@@ -13,17 +13,22 @@ class Presentation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props)
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props),
+      loading: false
       // total: 0
     }
     // this.updateTotal = this.updateTotal.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.auth.loggedIn()) {
+    this.setState({loading:true});
+    // setTimeout(this.checkLogin, 1000);
+     if (!this.state.auth.loggedIn()) {
+      this.state.auth.login();
+    } else {
       this.state.auth.loginUser();
-      this.props.startPresSession({socket: this.props.params.socket});
-    }
+      this.props.startPresSession({socket: this.props.params.socket});    
+    }      
   }
 
   // updateTotal(count) {

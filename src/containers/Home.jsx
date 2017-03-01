@@ -26,8 +26,6 @@ class Home extends Component {
   }
 
   render() {
-    //const auth = new AuthService('qjGwtKBFdcc0chj52rGul3p3nEa0LW3J', 'saivickna.auth0.com', this.props);
-
     return (
       <div>
         <div>
