@@ -2,15 +2,14 @@ export const SETANSWERS = 'SETANSWERS';
 export const SUBMITANSWER = 'SUBMITANSWER';
 export const SHOWANSWER = 'SHOWANSWER';
 
-export function setAnswers(answer) {
+export function setAnswers(answers) {
   return {
     type: SETANSWERS,
-    answer: answer
+    answers: answers
   };
 }
 
 export function submitAnswer(answer) {
-  console.log('submitAnswer', answer);
   return {
     type: SUBMITANSWER,
     answer: answer

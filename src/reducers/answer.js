@@ -1,9 +1,9 @@
 import { SETANSWERS, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
 
-export function answer(state = null, action) {
+export function setAnswers(state = null, action) {
   switch (action.type) {
     case SETANSWERS:
-      return state = action.answer;
+      return state = action.answers;
     default:
       return state;
   }
