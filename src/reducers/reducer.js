@@ -4,6 +4,7 @@ import user from './user';
 import question from './question';
 import { setAnswers, submitAnswer, showAnswer } from './answer';
 import { questions, askedQuestions } from './questions';
+import { setAudQuestions, submitAudQuestion } from './audquestions';
 import { response } from './response';
 import { session, invalidRoom, presentation, pressession } from './session';
 
@@ -13,6 +14,8 @@ export default combineReducers({
   question,
   questions,
   askedQuestions,
+  setAudQuestions,
+  submitAudQuestion,
   setAnswers,
   submitAnswer,
   showAnswer,
