@@ -13,7 +13,7 @@ export default class AuthService extends EventEmitter {
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
         redirectUrl: `${window.location.origin}/`,
-        responseType: 'token',
+        responseType: 'token'
       }
     })
     // this.auth0 = this.lock.getClient();
@@ -34,7 +34,7 @@ export default class AuthService extends EventEmitter {
   _doAuthentication(authResult){
     // Saves the user token
     this.setToken(authResult.idToken)
-    //console.log('authResult', authResult.state.slice(7 + authResult.state.substring(7).indexOf('/')))
+
     // Async loads the user profile data
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
@@ -44,8 +44,6 @@ export default class AuthService extends EventEmitter {
         if (authResult.state) {
           browserHistory.push(authResult.state.slice(7 + authResult.state.substring(7).indexOf('/')));
         }
-        //browserHistory.push('/');
-
  
         this.setProfile(profile)
       }
@@ -70,11 +68,8 @@ export default class AuthService extends EventEmitter {
           responseType: 'token',
           callbackURL: window.location.origin,
           state: window.location.origin + window.location.pathname,
-          //callbackOnLocationHash: true
         });
       } else {
-        // regular login
-        //document.body.style.display = 'inline';
         console.log(err);
         that.lock.show();
         

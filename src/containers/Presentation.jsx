@@ -13,15 +13,13 @@ class Presentation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props),
-      loading: false
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props)
       // total: 0
     }
     // this.updateTotal = this.updateTotal.bind(this);
   }
 
   componentDidMount() {
-    this.setState({loading:true});
     // setTimeout(this.checkLogin, 1000);
      if (!this.state.auth.loggedIn()) {
       this.state.auth.login();
