@@ -99,7 +99,7 @@ export function chatMiddleware(store) {
       let state = store.getState();
       socket.emit('submitAudQuestion', {
         room: state.session.socket,
-        content: action.audquestion.content,
+        content: action.audQuestion.content,
         userID: state.user ? state.user.userID : -1,
         sessionID: state.session.sessionID
       });
@@ -109,7 +109,7 @@ export function chatMiddleware(store) {
       let state = store.getState();
       socket.emit('upvoteAudQuestion', {
         room: state.session.socket,
-        audquestion: action.audquestion
+        audQuestionID: action.audQuestion.audQuestionID
       });
 
     }
@@ -160,7 +160,7 @@ export default function (store) {
     });
 
     socket.on('audquestions', data => {
-      const newAudQuestions = Object.assign({}, store.getState().audquestions || []);
+      const newAudQuestions = Object.assign({}, store.getState().audQuestions || []);
       newAudQuestions.push(data);
 
       store.dispatch(setAudQuestions(newAudQuestions));
@@ -168,15 +168,15 @@ export default function (store) {
 
     socket.on('upvote', data => {
       const audQuestionID = data.audQuestionID;
-      const audquestions = Object.assign({}, store.getState().audquestions);
+      const audQuestions = Object.assign({}, store.getState().audQuestions);
 
-      audquestions.forEach(audQ => {
+      audQuestions.forEach(audQ => {
         if (audQ.audQuestionID === audQuestionID) {
           audQ.upvotes++;
         }
       });
 
-      store.dispatch(setAudQuestions(audquestions))
+      store.dispatch(setAudQuestions(audQuestions))
     });
 
   });

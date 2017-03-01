@@ -3,7 +3,7 @@ import { SETAUDQUESTIONS, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../action
 export function setAudQuestions(state = null, action) {
   switch (action.type) {
     case SETAUDQUESTIONS:
-      return state = action.audquestions;
+      return state = action.audQuestions;
     default:
       return state;
   }
@@ -12,7 +12,7 @@ export function setAudQuestions(state = null, action) {
 export function submitAudQuestion(state = null, action) {
   switch (action.type) {
     case SUBMITAUDQUESTION:
-      return state = action.audquestion;
+      return state = action.audQuestion;
     default:
       return state;
   }
@@ -21,7 +21,7 @@ export function submitAudQuestion(state = null, action) {
 export function upvoteAudQuestion(state = null, action) {
   switch (action.type) {
     case UPVOTEAUDQUESTION:
-      return state = action.audquestion;
+      return state = action.audQuestion;
     default:
       return state;
   }

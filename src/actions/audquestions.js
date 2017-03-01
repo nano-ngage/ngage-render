@@ -2,23 +2,23 @@ export const SUBMITAUDQUESTION = 'SUBMITAUDQUESTION';
 export const SETAUDQUESTIONS = 'SETAUDQUESTIONS';
 export const UPVOTEAUDQUESTION = 'UPVOTEAUDQUESTION';
 
-export function setAudQuestions(audquestions) {
+export function setAudQuestions(audQuestions) {
   return {
     type: SETAUDQUESTIONS,
-    audquestions: audquestions
+    audquestions: audQuestions
   };
 }
 
-export function submitAudQuestion(audquestion) {
+export function submitAudQuestion(audQuestion) {
   return {
     type: SUBMITAUDQUESTION,
-    audquestion: audquestion
+    audquestion: audQuestion
   };
 }
 
-export function upvoteAudQuestion(audquestion) {
+export function upvoteAudQuestion(audQuestion) {
   return {
     type: UPVOTEAUDQUESTION,
-    audquestion: audquestion
+    audquestion: audQuestion
   };
 }
