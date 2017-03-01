@@ -4353,6 +4353,10 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
+rmodal@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/rmodal/-/rmodal-1.0.24.tgz#c1f98528fb4238ae4e1c77bded53c11533c942bf"
+
 run-async@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-0.1.0.tgz#c8ad4a5e110661e402a7d21b530e009f25f8e389"
