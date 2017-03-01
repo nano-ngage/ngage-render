@@ -61,7 +61,7 @@ export default class AuthService extends EventEmitter {
   loggedIn(){
     // Checks if there is a saved token and it's still valid
     const token = this.getToken()
-    return !!token && !isTokenExpired(token)
+    return !!token;
   }
 
   setProfile(profile){

@@ -72,7 +72,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {setPresenter, setViewer, setUser, startPresSession, setResponse}, dispatch);
+  return bindActionCreators( {setUser, startPresSession, setResponse}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Presentation);
