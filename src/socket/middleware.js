@@ -87,6 +87,7 @@ export default function (store) {
       var response = Object.assign({}, store.getState().response);
       response.response = response.response || [];
       if (data.content !== null) {
+
         response.response.push({content: data.content, rand: 'anon' + Math.round(Math.random() * 100)});
       } else {
         response.answers.forEach(answer => {if (answer.answerID === answerID) {answer.count++;}})
