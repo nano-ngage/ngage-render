@@ -61,13 +61,13 @@ class Presentation extends Component {
             <div className="normal">Total Responses: {total}</div>
           </div>
           )
-          : <div>
+          : <div className="response-body">
             {this.props.response.response ? (
-            <div className="normal center">
+            <div >
               {this.props.response.response.map(resp => {
-                return <div>{resp}</div>
+                return <div className="viewPpt buttonColors animated slideIn"><span className="title">{'"' + resp.content + '"'}</span><span className="action">{'- ' + resp.rand}</span></div>
               })}
-            </div>) : ''}
+            </div>) : <div></div>}
             </div>}
             </div>
           ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
