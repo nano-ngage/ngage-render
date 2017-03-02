@@ -25,8 +25,8 @@ class Presentation extends Component {
       this.state.auth.login();
     } else {
       this.state.auth.loginUser();
-      this.props.startPresSession({socket: this.props.params.socket});    
-    }      
+      this.props.startPresSession({socket: this.props.params.socket});
+    }
   }
 
   // updateTotal(count) {
@@ -38,7 +38,7 @@ class Presentation extends Component {
     return (
       <div>
       <div className="content">
-        {this.props.user ? (this.props.pressession ? (this.props.response ? (
+        {this.props.user ? (this.props.pressession ? (this.props.response ? (this.props.response.question.type !== 2 ? (
           <div>
             <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
             <div>
@@ -58,7 +58,21 @@ class Presentation extends Component {
             </div>
             <div className="normal">Total Responses: {total}</div>
           </div>
-          ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>) : <div className="center"><p className="normal">Not a valid session</p></div>) : <div className="center"><p className="normal">Please login</p></div>}
+          )
+          : <div>
+              <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p>
+              </div>
+              <div>
+                <p className="welcome">{this.props.response.question.question}</p>
+                {this.props.response.answers.map((answer, index) => {
+                  console.log('answer', answer)
+                  return <div className="chats"><p className="normal">{answer.answer}</p></div>
+                })}
+              </div>
+            </div>
+          ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
+        ) : <div className="center"><p className="normal">Not a valid session</p></div>
+        ) : <div className="center"><p className="normal">Please login</p></div>}
         </div>
       </div>
     )
