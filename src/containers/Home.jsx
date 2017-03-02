@@ -41,7 +41,7 @@ class Home extends Component {
         </div>
         <div>
           {this.props.user ? (<div className='login'><button onClick={this.state.auth.logout.bind(this)}  className='button'>Logout</button></div>)
-          : (<div className='login'><button onClick={this.state.auth.login.bind(this)} onTouchEvent={this.state.auth.login.bind(this)} className='button'>Login</button></div>)}
+          : (<div className='login'><button onClick={this.state.auth.login.bind(this)}  className='button'>Login</button></div>)}
         </div>
       </div>
     )
