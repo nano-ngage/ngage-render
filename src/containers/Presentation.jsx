@@ -61,9 +61,9 @@ class Presentation extends Component {
             <div className="normal">Total Responses: {total}</div>
           </div>
           )
-          : <div className="response-body">
+          : <div className="response-container">
             {this.props.response.response ? (
-            <div >
+            <div className="response-body">
               {this.props.response.response.map(resp => {
                 return <div className="viewPpt buttonColors animated slideIn"><span className="title">{'"' + resp.content + '"'}</span><span className="action">{'- ' + resp.rand}</span></div>
               })}

@@ -388,6 +388,9 @@
   -webkit-animation-name: slideInRight;
   animation-name: slideInRight;
 }
+.response-container{
+  overflow:auto;
+}
 .response-body {
   height: 60vmin;
   /*position: fixed;*/
