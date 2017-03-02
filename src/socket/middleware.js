@@ -85,7 +85,14 @@ export default function (store) {
       var answerID = data.answerID;
       // var response = store.getState().response;
       var response = Object.assign({}, store.getState().response);
-      response.answers.forEach(answer => {if (answer.answerID === answerID) {answer.count++;}})
+      response.response = response.response || [];
+      if (data.content !== null) {
+        response.response.push(data.content);
+      } else {
+
+        response.answers.forEach(answer => {if (answer.answerID === answerID) {answer.count++;}})
+      }
+
       // console.log('before', store.getState().response.answers[0].count);
       store.dispatch(setResponse(response));
       // console.log('after', store.getState().response.answers[0].count);
