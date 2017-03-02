@@ -38,37 +38,37 @@ class Presentation extends Component {
     return (
       <div>
       <div className="content">
-        {this.props.user ? (this.props.pressession ? (this.props.response ? (this.props.response.question.type !== 2 ? (
+        {this.props.user ? (this.props.pressession ? (this.props.response ? (
           <div>
             <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
             <div>
               <p className="welcome">{this.props.response.question.question}</p>
             </div>
 
-            <div className="zoom">
-            <svg class="chart" width="420" height="120">
-              {this.props.response.answers.map((answer, index) => {
-                total += answer.count;
-                // var total = this.state.total + answer.count;
-                // updateTotal(total);
-                return <g transform={"translate(0," + 20*index + ")"}>
-                <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
-                <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count} </text></g>})}
-            </svg>
-            </div>
+          {this.props.response.question.type !== 2 ? (
+            <div>
+              <div className="zoom">
+                <svg class="chart" width="420" height="120">
+                  {this.props.response.answers.map((answer, index) => {
+                    total += answer.count;
+                    // var total = this.state.total + answer.count;
+                    // updateTotal(total);
+                    return <g transform={"translate(0," + 20*index + ")"}>
+                    <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
+                    <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count} </text></g>})}
+                </svg>
+              </div>
             <div className="normal">Total Responses: {total}</div>
           </div>
           )
           : <div>
-              <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p>
-              </div>
-              <div>
-                <p className="welcome">{this.props.response.question.question}</p>
-                {this.props.response.answers.map((answer, index) => {
-                  console.log('answer', answer)
-                  return <div className="chats"><p className="normal">{answer.answer}</p></div>
-                })}
-              </div>
+            {this.props.response.response ? (
+            <div className="normal center">
+              {this.props.response.response.map(resp => {
+                return <div>{resp}</div>
+              })}
+            </div>) : ''}
+            </div>}
             </div>
           ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
         ) : <div className="center"><p className="normal">Not a valid session</p></div>
@@ -76,6 +76,14 @@ class Presentation extends Component {
         </div>
       </div>
     )
+    // return (
+    //   this.props.response && this.props.user && this.props.pressession ? (
+    //   <div>
+    //     {console.log(this.props.response)}
+    //   </div>
+    //   ) :
+    //   <div>No response yet</div>
+    // )
   }
 }
 
