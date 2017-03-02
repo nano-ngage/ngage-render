@@ -39,7 +39,6 @@ export function chatMiddleware(store) {
           socket.emit('subscribe', {room: action.session.socket});
           action.session.sessionID = data.sessionID;
           action.session.presentationTitle = data.title;
-          console.log('*************', action.session.presentationTitle);
           store.dispatch(setPresSession(action.session));
         } else {
           store.dispatch(setPresSession(null));
@@ -51,7 +50,13 @@ export function chatMiddleware(store) {
     } else if (socket && action.type === SUBMITANSWER) {
       console.log('middleware', action.answer);
       let state = store.getState();
-      socket.emit('submitResponse', {room: state.session.socket, questionID: action.answer.question.questionID, content: null, answerID:action.answer.answer.answerID, userID: state.user ? state.user.userID : -1, session: state.session.sessionID });
+      let answerID = action.answer.answer.answerID;
+      let content = null;
+      if (action.answer.question.type === 2) {
+        content = action.answer.answer;
+        answerID = -1;
+      }
+      socket.emit('submitResponse', {room: state.session.socket, questionID: action.answer.question.questionID, content: content, answerID: answerID, userID: state.user ? state.user.userID : -1, sessionID: state.session.sessionID });
       store.dispatch(setAnswers(null));
     }
     // if (socket && action.type === SESSION) {
@@ -81,9 +86,9 @@ export default function (store) {
       // var response = store.getState().response;
       var response = Object.assign({}, store.getState().response);
       response.answers.forEach(answer => {if (answer.answerID === answerID) {answer.count++;}})
-      console.log('before', store.getState().response.answers[0].count);
+      // console.log('before', store.getState().response.answers[0].count);
       store.dispatch(setResponse(response));
-      console.log('after', store.getState().response.answers[0].count);
+      // console.log('after', store.getState().response.answers[0].count);
     })
   })
 
