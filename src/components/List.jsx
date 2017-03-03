@@ -16,9 +16,10 @@ export default class List extends Component {
 
   createItemsMarkup(items, Type) {
     const markupItems = items.map((item, index) => {
+      const newItem = Object.assign({}, item);
       return (
         <li key={index} >
-          <Type handleQuestionClick={this.props.handleQuestionClick} data={item} />
+          <Type data={newItem} />
         </li>
       );
     });
