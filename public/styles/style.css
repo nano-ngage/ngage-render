@@ -196,6 +196,7 @@
   text-decoration: none;
   cursor: pointer;
   border-radius: 5px;
+
 }
 .questionButtons:hover {
   background-color: #A1FB86;
@@ -396,4 +397,9 @@
   /*position: fixed;*/
   overflow-x: hidden;
   overflow-y: auto;
+}
+.current-question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
