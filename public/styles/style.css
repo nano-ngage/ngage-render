@@ -253,6 +253,7 @@
   color: #a9a9a9;
   text-shadow: 1px 1px #000000;
 }
+
 .free-response {
   display: flex;
   background-color: #ffffff;
@@ -492,4 +493,14 @@
 .fadeInUp {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
+}
+
+.modal.modal-background {
+  background-color: white;
+}
+
+.modal-dialog {
+  border-radius: 0px !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
