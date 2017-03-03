@@ -27,10 +27,10 @@ class Viewer extends Component {
             </div>
             <div className="answer-container">
               {this.props.answers.question.type !== 2 ? this.props.answers.answers.map(answer => {
-                return <button className="answerButtons buttonColors" onKeyPress={(e) => {if (e.which === 13) {this.props.submitAnswer({question: this.props.answers.question, answer: this.state.content})};}} onClick={() => {alert('asdf')} onTouchStart={() => {alert('hihi')}} key={answer.answerID}>{answer.answer}</button>}) :
+                return <button className="answerButtons buttonColors" onKeyPress={(e) => {if (e.which === 13) {this.props.submitAnswer({question: this.props.answers.question, answer: this.state.content})};}} onClick={() => {this.props.submitAnswer({question: this.props.answers.question, answer:answer})}} key={answer.answerID}>{answer.answer}</button>}) :
               <div className="center">
                 <input className="free-response" onInput={linkEvent(this, response)} type="text" placeholder="Enter Response"></input>
-                <button className='button' onTouchStart={() => this.props.submitAnswer({question: this.props.answers.question, answer: this.state.content})} onClick={() => this.props.submitAnswer({question: this.props.answers.question, answer: this.state.content})}>Submit</button>
+                <button className='button' onClick={() => this.props.submitAnswer({question: this.props.answers.question, answer: this.state.content})}>Submit</button>
                 </div>
                 }
               </div>
