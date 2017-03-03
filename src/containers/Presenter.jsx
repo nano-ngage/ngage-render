@@ -30,11 +30,11 @@ class Presenter extends Component {
                   <div className="to-ask">
                     <h3 className="normal black">Queue</h3>
                     {this.props.questions.map(question => {
-                      return <button className='questionButtons buttonColors'  onClick={() => {this.props.setQuestion(question); this.props.setAskedQuestions(question); this.props.deleteQuestion(question)}} key={question.questionID}>{question.question}</button>})}
+                      return <button className='questionButtons buttonColors' onClick={() => {this.props.setQuestion(question); this.props.setAskedQuestions(question); this.props.deleteQuestion(question)}} key={question.questionID}>{question.question}</button>})}
                   </div>
                   <div className="to-ask">
                     <h3 className="normal black">Order Asked</h3>
-                    {this.props.askedQuestions.length > 0 ? this.props.askedQuestions.map(question => <button className='askedColors' onClick={() => {this.props.setQuestion(question);}}key={question.questionID}>{question.question}</button>) : ''}
+                    {this.props.askedQuestions.length > 0 ? this.props.askedQuestions.map(question => <button className='askedColors' onClick={() => {this.props.setQuestion(question);}} key={question.questionID}>{question.question}</button>) : ''}
                   </div>
                 </div>
               </div>
