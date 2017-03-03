@@ -12,6 +12,10 @@ function roomVal(instance, e) {
   instance.setState({room: roomCode});
 }
 
+function handleClick(instance) {
+  instance.props.setSession({socket: instance.state.room, userID: instance.props.user ? instance.props.user.userID : -1})
+}
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -38,7 +42,7 @@ class Home extends Component {
         <div className='room'>
           <input className='codeInput' value={this.state.room} onInput={linkEvent(this, roomVal)} type="text" placeholder="Code"
             onKeyPress={(e) => {if (e.which === 13) {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})};}}></input>
-          <button className='button' onClick={() => {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})}} onTouchStart={() => {this.props.setSession({socket: this.state.room, userID: this.props.user ? this.props.user.userID : -1})}}>Enter</button>
+          <button className='button' onClick={linkEvent(this, handleClick)}>Enter</button>
         </div>
         <div>
           {this.props.user ? (<div className='login'><button onClick={this.state.auth.logout.bind(this)}  className='button'>Logout</button></div>)
