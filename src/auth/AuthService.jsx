@@ -15,6 +15,9 @@ export default class AuthService extends EventEmitter {
         redirectUrl: `${window.location.origin}/`,
         responseType: 'token'
       },
+      languageDictionary: {
+        title: "nGage"
+      },
       autoclose: true,
       theme: {
         logo: 'http://i68.tinypic.com/2n7odg.png',
