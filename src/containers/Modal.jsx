@@ -2,9 +2,9 @@ import Inferno from 'inferno';
 import Component from 'inferno-component';
 import RModal from 'rmodal';
 import List from '../components/List.jsx';
-import Question from './Question'
+import Question from './Question.jsx';
 
-import { submitAudQuestion, upvoteAudQuestion, setAudQuestions } from '../actions/audquestions'
+import { audQuestions } from '../actions/audquestions';
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
@@ -49,7 +49,7 @@ class Modal extends Component {
           <div className="modal-dialog animated">
             <div className="modal-content">
               <div className="modal-body">
-                <List items={this.props.audquestions} itemType={Question} />
+                <List items={this.props.audQuestions} itemType={Question} />
               </div>
               <div className="modal-footer">
                 <button className="button" onClick={this.handleClose} >Close</button>
@@ -66,14 +66,12 @@ class Modal extends Component {
 
 const mapStateToProps = state => {
   return {
-    audquestions: state.audqestions,
-    session: state.session,
-    user: state.user
+    audQuestions: state.audQuestions
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( { submitAudQuestion, upvoteAudQuestion, setAudQuestions }, dispatch)
+  return bindActionCreators( { audQuestions }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
