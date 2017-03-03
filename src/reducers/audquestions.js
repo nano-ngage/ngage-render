@@ -1,6 +1,6 @@
 import { SETAUDQUESTIONS, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../actions/audquestions';
 
-export function setAudQuestions(state = null, action) {
+export function audQuestions(state = null, action) {
   switch (action.type) {
     case SETAUDQUESTIONS:
       return state = action.audQuestions;
