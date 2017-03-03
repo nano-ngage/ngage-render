@@ -14,6 +14,11 @@ export default class AuthService extends EventEmitter {
       auth: {
         redirectUrl: `${window.location.origin}/`,
         responseType: 'token'
+      },
+      autoclose: true,
+      theme: {
+        logo: 'http://i68.tinypic.com/2n7odg.png',
+        primaryColor: '#2f4961'
       }
     })
     // this.auth0 = this.lock.getClient();
@@ -44,7 +49,7 @@ export default class AuthService extends EventEmitter {
         if (authResult.state) {
           browserHistory.push(authResult.state.slice(7 + authResult.state.substring(7).indexOf('/')));
         }
- 
+
         this.setProfile(profile)
       }
     })
@@ -72,7 +77,7 @@ export default class AuthService extends EventEmitter {
       } else {
         console.log(err);
         that.lock.show();
-        
+
       }
     });
   }
