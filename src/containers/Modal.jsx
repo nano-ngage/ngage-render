@@ -8,7 +8,6 @@ import { submitAudQuestion, upvoteAudQuestion, setAudQuestions } from '../action
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
-
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,8 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    const modal = new RModal(this.refs.modal)
+    const modal = new RModal(this.modal)
+
     this.setState({
       modal: modal
     });
@@ -44,8 +44,8 @@ class Modal extends Component {
 
   render() {
     return (
-      <div>
-        <div id="modal" className="modal" ref="modal">
+      <div className="center">
+        <div id="modal" className="modal-background modal" ref={div => { this.modal = div; }} >
           <div className="modal-dialog animated">
             <div className="modal-content">
               <div className="modal-body">
