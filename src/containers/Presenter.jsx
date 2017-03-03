@@ -25,7 +25,7 @@ class Presenter extends Component {
             (
               <div className="questions">
                 <div className="normal">Current Question: </div>
-                <div className="q-title">{this.props.question === null ? 'Please Select Question' : this.props.question.question}</div>
+                <div className="q-title">{this.props.question === null ? 'Please Select Question' : <div className="current-question">{this.props.question.question}<button className="button">Show Answer</button></div>}</div>
                 <div className="questions-container">
                   <div className="to-ask">
                     <h3 className="normal black">Queue</h3>
