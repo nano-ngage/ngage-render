@@ -5,20 +5,20 @@ export const UPVOTEAUDQUESTION = 'UPVOTEAUDQUESTION';
 export function setAudQuestions(audQuestions) {
   return {
     type: SETAUDQUESTIONS,
-    audquestions: audQuestions
+    audQuestions: audQuestions
   };
 }
 
 export function submitAudQuestion(audQuestion) {
   return {
     type: SUBMITAUDQUESTION,
-    audquestion: audQuestion
+    audQuestion: audQuestion
   };
 }
 
 export function upvoteAudQuestion(audQuestion) {
   return {
     type: UPVOTEAUDQUESTION,
-    audquestion: audQuestion
+    audQuestion: audQuestion
   };
 }
