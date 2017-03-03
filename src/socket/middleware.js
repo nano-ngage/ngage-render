@@ -160,10 +160,17 @@ export default function (store) {
     });
 
     socket.on('audquestions', data => {
-      const newAudQuestions = Object.assign({}, store.getState().audQuestions || []);
-      newAudQuestions.push(data);
+      const audQuestions = store.getState().audQuestions || [];
 
-      store.dispatch(setAudQuestions(newAudQuestions));
+      if (audQuestions.length === 0) {
+        audQuestions.push(data);
+        store.dispatch(setAudQuestions(audQuestions))
+      } else {
+        const newAudQuestions = audQuestions.slice()
+        newAudQuestions.push(data)
+        store.dispatch(setAudQuestions(newAudQuestions));
+      }
+
     });
 
     socket.on('upvote', data => {
