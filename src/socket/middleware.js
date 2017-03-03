@@ -174,11 +174,10 @@ export default function (store) {
     });
 
     socket.on('upvote', data => {
-      const audQuestionID = data.audQuestionID;
-      const audQuestions = Object.assign({}, store.getState().audQuestions);
+      const audQuestions = store.getState().audQuestions.slice();
 
       audQuestions.forEach(audQ => {
-        if (audQ.audQuestionID === audQuestionID) {
+        if (audQ.audQuestionID === data) {
           audQ.upvotes++;
         }
       });
