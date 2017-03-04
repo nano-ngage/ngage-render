@@ -4,7 +4,7 @@ import {setQuestions, setAskedQuestions} from '../actions/questions';
 import {setResponse} from '../actions/response';
 import {setAnswers, SUBMITANSWER} from '../actions/answer';
 import io from 'socket.io-client';
-// import 'whatwg-fetch';
+import 'whatwg-fetch';
 
 var socket = null;
 var url = `http://${DBIP}:${DBPORT}`
