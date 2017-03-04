@@ -8,6 +8,9 @@ import { audQuestions } from '../actions/audquestions';
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
+import css from 'rmodal/src/rmodal.css';
+import css from '/animate.css';
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +54,7 @@ class Modal extends Component {
               <div className="modal-body">
                 <List items={this.props.audQuestions} itemType={Question} />
               </div>
-              <div className="modal-footer">
+              <div className="modal-footer center">
                 <button className="button" onClick={this.handleClose} >Close</button>
               </div>
             </div>
