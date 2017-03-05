@@ -8,7 +8,7 @@ export default class List extends Component {
     const markupItems = this.createItemsMarkup(items, ItemType);
 
     return (
-      <ul>
+      <ul className={this.props.ulClass}>
         {markupItems}
       </ul>
     );
