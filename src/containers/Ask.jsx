@@ -29,20 +29,20 @@ class Ask extends Component {
     const newAudQ = {
       content: this.state.value
     }
-    console.log('newAudQ', newAudQ)
     this.props.submitAudQuestion(newAudQ)
   }
 
   render() {
     return (
-      <form className="center" onSubmit={this.handleSubmit}>
+      <form className="modal-form" onSubmit={this.handleSubmit}>
         <h3>Have a question for the presenter?</h3>
-        <input type="text"
-               className="ainput"
-               placeholder="Ask a question..."
-               value={this.state.value}
-               onInput={this.handleInput} />
-        <button type="submit" className="button" >Submit</button>
+        <div className="modal-form-group">
+          <input type="text"
+            placeholder="Ask a question..."
+            value={this.state.value}
+            onInput={this.handleInput} />
+            <button type="submit">Submit</button>
+        </div>
       </form>
     );
   }
