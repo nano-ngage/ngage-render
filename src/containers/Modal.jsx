@@ -32,6 +32,28 @@ class Modal extends Component {
   }
 
   render() {
+    let modalClasses = 'modal' + (this.state.active ? ' modal-' + this.state.modal : ' modal-closed')
+    let overlayClasses = 'modal-overlay' + (this.state.active ? '' : ' modal-closed')
+    let gutsClasses = 'modal-guts' + (this.state.modal === '' ? '' : ' modal-' + this.state.modal)
+
+    let modalGuts;
+
+    if (this.state.modal === 'question') {
+      modalGuts = (<Ask />)
+    } else if (this.state.modal === 'aud') {
+      modalGuts = (<List ulClass="modal-ul" items={this.props.audQuestions} itemType={Question}/>)
+    } else {
+      modalGuts = null;
+    }
+
+    let mark;
+
+    if (this.props.audQuestions && this.props.audQuestions.length !== 0) {
+      mark = (<mark className="aud">{this.props.audQuestions.length}</mark>)
+    } else {
+      mark = null;
+    }
+
     return (
       <div className="modal-container">
         <div className="modal-list">
