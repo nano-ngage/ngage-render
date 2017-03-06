@@ -18,12 +18,19 @@ class Question extends Component {
   }
 
   render() {
-    console.log('question props', this.props)
+    let likes;
+    if (this.props.data.upvotes !== 0) {
+      likes = (<div className="audq-likes">{this.props.data.upvotes}</div>);
+    } else {
+      likes = null;
+    }
     return (
-      <div>
-        <h3 >{this.props.data.content}</h3>
-        <small>Votes: {this.props.data.upvotes}</small>
-        <button onClick={this.handleUpvote}>+1</button>
+      <div className="audq">
+        <h3 className="audq-title">{this.props.data.content}</h3>
+        {likes}
+        <div className="audq-social">
+          <span className="like" onClick={this.handleUpvote}></span>
+        </div>
       </div>
     )
   }
