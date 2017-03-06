@@ -507,4 +507,18 @@
 
 form {
   height: 100%;
+  width: 90%;
+}
+
+body, html {
+  height: 100%;
+}
+
+div#app {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
 }
