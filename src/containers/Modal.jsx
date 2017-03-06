@@ -1,67 +1,69 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
-import RModal from 'rmodal';
+
 import List from '../components/List.jsx';
 import Question from './Question.jsx';
+import Ask from './Ask.jsx';
 
 import { audQuestions } from '../actions/audquestions';
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
-import css from 'rmodal/src/rmodal.css';
-import css from '/animate.css';
 
 class Modal extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      modal: null
+      active: false,
+      modal: ''
     }
 
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
-  componentDidMount() {
-    const modal = new RModal(this.modal)
 
+  handleToggle(e) {
+    var modal = e.target.className === 'modal-button' ? '' : e.target.className
+    e.preventDefault();
     this.setState({
+      active: !this.state.active,
       modal: modal
     });
   }
 
-  handleClose(e) {
-    e.preventDefault();
-    if (this.state.modal) {
-      this.state.modal.close();
-    }
-  }
-
-  handleOpen(e) {
-    e.preventDefault();
-    if (this.state.modal) {
-      this.state.modal.open();
-    }
-  }
-
   render() {
     return (
-      <div className="center">
-        <div id="modal" className="modal-background modal" ref={div => { this.modal = div; }} >
-          <div className="modal-dialog animated">
-            <div className="modal-content">
-              <div className="modal-body">
-                <List items={this.props.audQuestions} itemType={Question} />
-              </div>
-              <div className="modal-footer center">
-                <button className="button" onClick={this.handleClose} >Close</button>
-              </div>
+      <div className="modal-container">
+        <div className="modal-list">
+          <ul className="dots">
+            <li>
+              <a className="question" href="#" onClick={this.handleToggle}>
+                <span className="question"></span>
+              </a>
+            </li>
+            <li>
+              <a className="aud" href="#" onClick={this.handleToggle}>
+                <span className="aud">
+                  {mark}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className={modalClasses} id="modal">
+            <div className="modal-button" onClick={this.handleToggle}>
+              <span >&#10006;</span>
             </div>
+          <div className={gutsClasses}>
+            {modalGuts}
           </div>
         </div>
-        <button className="button" onClick={this.handleOpen} >Audience Questions</button>
+
+        <div className={overlayClasses} id="modal-overlay"></div>
       </div>
+
+
 
     );
   }
