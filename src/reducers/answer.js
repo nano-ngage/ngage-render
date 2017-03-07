@@ -1,4 +1,4 @@
-import { SETANSWERS, SUBMITANSWER } from '../actions/answer';
+import { SETANSWERS, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
 
 export function answer(state = null, action) {
   switch (action.type) {
@@ -12,6 +12,15 @@ export function answer(state = null, action) {
 export function submitAnswer(state = null, action) {
   switch (action.type) {
     case SUBMITANSWER:
+      return state = action.answer;
+    default:
+      return state;
+  }
+}
+
+export function showAnswer(state = null, action) {
+  switch (action.type) {
+    case SHOWANSWER:
       return state = action.answer;
     default:
       return state;

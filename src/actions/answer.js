@@ -1,5 +1,6 @@
 export const SETANSWERS = 'SETANSWERS';
 export const SUBMITANSWER = 'SUBMITANSWER';
+export const SHOWANSWER = 'SHOWANSWER';
 
 export function setAnswers(answer) {
   return {
@@ -12,6 +13,14 @@ export function submitAnswer(answer) {
   console.log('submitAnswer', answer);
   return {
     type: SUBMITANSWER,
+    answer: answer
+  };
+}
+
+export function setShowAnswer(answer) {
+  console.log('show answer', answer);
+  return {
+    type: SHOWANSWER,
     answer: answer
   };
 }
