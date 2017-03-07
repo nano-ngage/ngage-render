@@ -49,7 +49,8 @@ export default class AuthService extends EventEmitter {
         console.log('Error loading the Profile', error)
       } else {
         this.loginUser(profile);
-        if (authResult.state) {
+        if (authResult.state && authResult.state.includes('presentation')) {
+          console.log(authResult.state);
           browserHistory.push(authResult.state.slice(7 + authResult.state.substring(7).indexOf('/')));
         }
 
