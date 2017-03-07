@@ -1,4 +1,4 @@
-import { ADDPARTICIPANT } from '../actions/participant';
+import { ADDPARTICIPANT } from '../actions/participants';
 
 export function participant(state = 0, action) {
   switch (action.type) {

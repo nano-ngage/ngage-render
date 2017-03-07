@@ -5,6 +5,7 @@ import { setAudQuestions, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../action
 import { setResponse } from '../actions/response';
 import { setAnswers, setShowAnswer, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
 import { setQAModal, SETQAMODAL } from '../actions/qa';
+import { addParticipant } from '../actions/participants';
 import io from 'socket.io-client';
 import 'whatwg-fetch';
 
@@ -22,6 +23,7 @@ export function chatMiddleware(store) {
         .then(data => {
           if (data !== -1) {
             var user = store.getState().user;
+
             socket.emit('subscribe', {
               room: action.session.socket,
               userID: user ? user.userID : -1,
@@ -29,7 +31,13 @@ export function chatMiddleware(store) {
              });
             action.session.sessionID = data.sessionID;
             action.session.presentationTitle = data.title;
-            if (user && user.userID && (user.userID === data.userID)) {
+            console.log('user', user);
+            console.log('data', data);
+            console.log(data.userID)
+            console.log(user.userID)
+            console.log((user.userID === data.userID))
+            if ((user !== undefined) && (user.userID !== undefined) && (user.userID === data.userID)) {
+
               browserHistory.push('/presenter');
             } else {
               browserHistory.push('/viewer');
@@ -198,6 +206,11 @@ export default function (store) {
 
     socket.on('qamodal', data => {
       store.dispatch(setQAModal(data));
+    });
+
+    socket.on('addparticipant', data => {
+      // const participant = store.getState().participant;
+      store.dispatch(addParticipant());
     });
 
   });

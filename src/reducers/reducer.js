@@ -27,6 +27,7 @@ export default combineReducers({
   invalidRoom,
   pressession,
   presentation,
+  participant,
   response,
   qaModal
 });
