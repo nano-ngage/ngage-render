@@ -4,6 +4,7 @@ import { setQuestions , setAskedQuestions } from '../actions/questions';
 import { setAudQuestions, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../actions/audquestions';
 import { setResponse } from '../actions/response';
 import { setAnswers, setShowAnswer, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
+import { setQAModal, SETQAMODAL } from '../actions/qa';
 import io from 'socket.io-client';
 import 'whatwg-fetch';
 
@@ -112,6 +113,12 @@ export function chatMiddleware(store) {
         audQuestionID: action.audQuestion.audQuestionID
       });
 
+    } else if (socket && action.type === SETQAMODAL) {
+      let state = store.getState();
+      socket.emit('enableQA', {
+        room: state.session.socket,
+        qaModal: action.qaModal
+      });
     }
     return result;
   };
@@ -183,6 +190,10 @@ export default function (store) {
       });
 
       store.dispatch(setAudQuestions(audQuestions))
+    });
+
+    socket.on('qamodal', data => {
+      store.dispatch(setQAModal(data));
     });
 
   });
