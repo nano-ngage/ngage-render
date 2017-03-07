@@ -33,7 +33,11 @@ class Presentation extends Component {
       <div className="content">
         {this.props.user ? (this.props.pressession ? (this.props.response ? (
           <div>
-            <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
+            <div>
+                <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
+                <div className="center"><p className="normal">Participants: {this.props.participant || 0}</p></div>
+            </div>
+
             <div>
               <p className="welcome">{this.props.response.question.question}</p>
             </div>
@@ -67,7 +71,10 @@ class Presentation extends Component {
             </div>) : <div></div>}
             </div>}
             </div>
-          ) : <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
+          ) : <div>
+                <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
+                <div className="center"><p className="normal">Participants: {this.props.participant || 0}</p></div>
+              </div>
         ) : <div className="center"><p className="normal">Not a valid session</p></div>
         ) : <div className="center"><p className="normal">Please login</p></div>}
         </div>
@@ -89,7 +96,8 @@ const mapStateToProps = state => {
     type: state.type,
     user: state.user,
     response: state.response,
-    pressession: state.pressession
+    pressession: state.pressession,
+    participant: state.participant
   };
 }
 
