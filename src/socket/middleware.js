@@ -21,10 +21,14 @@ export function chatMiddleware(store) {
         .then(data => data.json())
         .then(data => {
           if (data !== -1) {
-            socket.emit('subscribe', { room: action.session.socket });
+            var user = store.getState().user;
+            socket.emit('subscribe', {
+              room: action.session.socket,
+              userID: user ? user.userID : -1,
+              sessionID: action.session.sessionID
+             });
             action.session.sessionID = data.sessionID;
             action.session.presentationTitle = data.title;
-            var user = store.getState().user;
             if (user && user.userID && (user.userID === data.userID)) {
               browserHistory.push('/presenter');
             } else {
