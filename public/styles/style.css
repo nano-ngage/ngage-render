@@ -30,15 +30,16 @@
   flex-direction: column;
 }
 .normal {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #83CC6D;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #83CC6D;
+  text-align: center;
 }
 .zoom {
   margin-top: 5vmin;
   zoom: 200%;
+  margin-bottom:0;
 }
 .login {
   display: flex;
@@ -94,8 +95,8 @@
   background-color: #A1FB86;
 }
 .answerButtons:active {
-  font-size: 125%;
-  /*border-radius: 100px;*/
+  /*font-size: 125%;*/
+  border: 5px solid #83CC6D
 }
 .answer-container {
   display: flex;
@@ -135,17 +136,18 @@
     font-size: 1rem;
   }
 }
-.chart rect {
-  fill: #83CC6D;
+
+.chart {
+  margin-top: 15px;
 }
 .chart text {
-  fill: #83CC6D;
-  /*font: 10px sans-serif;*/
-  /*text-anchor: end;*/
+  /*fill: #83CC6D;*/
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
-  color: #83CC6D;
+  text-shadow: 1px 1px 1px #000000;
+  font-weight: 600;
 }
+
 .loading {
   width: 120px;
   height: 120px;
@@ -163,8 +165,9 @@
 .questions {
   display: flex;
   flex-direction: column;
-  margin-top:10vmin;
+  margin-top:5vmin;
   width: 90%;
+  margin-bottom: 10vmin;
 }
 .questions-container {
   display: flex;
@@ -187,7 +190,6 @@
   /*height: 7vmin;*/
   padding: 3vmin;
   background-color: #83CC6D;
-  border: none;
   margin: 7px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -196,7 +198,7 @@
   text-decoration: none;
   cursor: pointer;
   border-radius: 5px;
-
+  border:none;
 }
 .questionButtons:hover {
   background-color: #A1FB86;
@@ -206,10 +208,11 @@
 }
 .q-title {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
   color: #83CC6D;
   text-align: center;
+  margin-bottom: 2vmin;
 }
 .askedColors {
   background-color: #a9a9a9;
@@ -246,6 +249,7 @@
   background-color: #b195c6;
 }
 .black {
+  margin-bottom: 2vmin;
   color: #a9a9a9;
   text-shadow: 1px 1px #000000;
 }
@@ -263,20 +267,6 @@
   border-radius: 5px;
   text-align: center;
   margin-bottom: 3vmin;
-}
-
-.chats {
-  display: flex;
-  flex-direction: column;
-  width: 70vmin;
-  height: 50vmin;
-  /*margin: auto;*/
-  text-align: left;
-  background: white;
-  padding: 20px 20px;
-  border: solid #ddd;
-  border-width: 1px 1px 1px 1px;
-  overflow: scroll;
 }
 .response {
   font-family: Arial, Helvetica, sans-serif;
@@ -402,4 +392,104 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.show-answer {
+  margin-top:2vmin;
+}
+.chart-display {
+  display: flex;
+  flex-direction: column;
+}
+.answerbox {
+  display: flex;
+  width: 40vw;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: #cccfd1;
+  border: none;
+  font-size: 1.3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 2px 9px 0px 9px;
+  border-radius: 5px;
+  flex-flow: row wrap;
+  box-shadow: 5px 5px 5px 0 rgba(230,230,230,2);
+    -webkit-transition: 200ms;
+  transition: 200ms;
+}
+.white {
+  display: flex;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000000;
+  margin-left: 5vmin;
+  margin-right: 5vmin;
+}
+.answersColors {
+  fill: #ffffff;
+}
+.answerbox {
+  display: flex;
+  width: 40vw;
+  justify-content: center;
+  background-color: #83CC6D;
+  border: none;
+  font-size: 1.3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  flex-flow: row wrap;
+  box-shadow: 5px 5px 5px 0 rgba(230,230,230,2);
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+.correct-answer {
+}
+.correct {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #83CC6D;
+  text-align: center;
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
 }
