@@ -8,15 +8,12 @@ import { setResponse } from '../actions/response';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
-
 class Presentation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props)
-      // total: 0
     }
-    // this.updateTotal = this.updateTotal.bind(this);
   }
 
   componentDidMount() {
@@ -29,10 +26,6 @@ class Presentation extends Component {
     }
   }
 
-  // updateTotal(count) {
-  //   this.setState({total: count});
-  // }
-
   render() {
     var total = 0;
     return (
@@ -44,21 +37,25 @@ class Presentation extends Component {
             <div>
               <p className="welcome">{this.props.response.question.question}</p>
             </div>
+          {this.props.response.correct ?
+            <div className="correct animated fadeInUp">Correct Answer: {this.props.response.correct.correct[0].answer}</div> : ''}
 
           {this.props.response.question.type !== 2 ? (
             <div>
-              <div className="zoom">
-                <svg class="chart" width="420" height="120">
+            <div className="chart-display">
+              <div className="zoom answerbox">
+                <svg class="chart" width="420" height="100">
                   {this.props.response.answers.map((answer, index) => {
                     total += answer.count;
-                    // var total = this.state.total + answer.count;
-                    // updateTotal(total);
-                    return <g transform={"translate(0," + 20*index + ")"}>
+                    return <g class={answer.answerID + " answersColors"}  transform={"translate(0," + 20*index + ")"}>
                     <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
                     <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count} </text></g>})}
                 </svg>
+                <div className="white">Total Responses: {total}
+                </div>
               </div>
-            <div className="normal">Total Responses: {total}</div>
+          </div>
+
           </div>
           )
           : <div className="response-container">
