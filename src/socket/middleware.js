@@ -2,7 +2,7 @@ import {setSession, setPresSession, setInvalidRoom, SESSION, STARTPRES, PRESSESS
 import {SETQUESTION} from '../actions/question';
 import {setQuestions, setAskedQuestions} from '../actions/questions';
 import {setResponse} from '../actions/response';
-import {setAnswers, SUBMITANSWER} from '../actions/answer';
+import {setAnswers, SUBMITANSWER, SHOWANSWER, setShowAnswer} from '../actions/answer';
 import io from 'socket.io-client';
 import 'whatwg-fetch';
 
@@ -48,6 +48,10 @@ export function chatMiddleware(store) {
     } else if (socket && action.type === SETQUESTION) {
       let room = store.getState().session.socket;
       socket.emit('askQ', {room: room, question: action.question});
+    } else if (socket && action.type === SHOWANSWER) {
+      console.log('#########', action.answer)
+      let room = store.getState().session.socket;
+      socket.emit('showA', {room: room, questionID: action.answer});
     } else if (socket && action.type === SUBMITANSWER) {
       console.log('middleware', action.answer);
       let state = store.getState();
@@ -70,22 +74,30 @@ export function chatMiddleware(store) {
 
 export default function (store) {
   //104.131.147.199
-  //10.6.22.194
 
   socket = io.connect(`http://${SOCKETIP}:${SOCKETPORT}/ngage`, { path: '/sockets'});
   socket.on('connect', con => {
     socket.on('questions', data => {
       store.dispatch(setQuestions(data));
-    })
+    });
+
     socket.on('answers', data => {
       store.dispatch(setAnswers(data));
       data.answers.forEach(function(answer) { answer.count = 0; });
       store.dispatch(setResponse(data));
-    })
+    });
+
+    socket.on('correct', data => {
+      var response = Object.assign({}, store.getState().response);
+      response.correct = data;
+      store.dispatch(setResponse(response));
+    });
+
     socket.on('resp', data => {
       var answerID = data.answerID;
       // var response = store.getState().response;
       var response = Object.assign({}, store.getState().response);
+      response.correct = null;
       response.response = response.response || [];
       if (data.content !== null) {
 
