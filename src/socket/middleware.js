@@ -31,13 +31,7 @@ export function chatMiddleware(store) {
              });
             action.session.sessionID = data.sessionID;
             action.session.presentationTitle = data.title;
-            console.log('user', user);
-            console.log('data', data);
-            console.log(data.userID)
-            console.log(user.userID)
-            console.log((user.userID === data.userID))
             if ((user !== undefined) && (user.userID !== undefined) && (user.userID === data.userID)) {
-
               browserHistory.push('/presenter');
             } else {
               browserHistory.push('/viewer');
