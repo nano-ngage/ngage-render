@@ -3,6 +3,7 @@ import Component from 'inferno-component';
 import { setPresentation } from '../actions/session';
 import { setQuestion } from '../actions/question';
 import { setAskedQuestions, deleteQuestion } from '../actions/questions';
+import {setShowAnswer} from '../actions/answer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
@@ -24,8 +25,8 @@ class Presenter extends Component {
             ) :
             (
               <div className="questions">
-                <div className="normal">Current Question: </div>
-                <div className="q-title">{this.props.question === null ? 'Please Select Question' : <div className="current-question">{this.props.question.question}<button className="button">Show Answer</button></div>}</div>
+                <div className="normal black">Current Question: </div>
+                <div className="q-title">{this.props.question === null ? 'Please Select Question' : <div className="current-question">{this.props.question.question}{this.props.question.type === 1? <button className="button show-answer" onClick={() => {this.props.setShowAnswer(this.props.question.questionID)}}>Show Answer</button> : ''}</div>}</div>
                 <div className="questions-container">
                   <div className="to-ask">
                     <h3 className="normal black">Queue</h3>
@@ -33,7 +34,7 @@ class Presenter extends Component {
                       return <button className='questionButtons buttonColors' onClick={() => {this.props.setQuestion(question); this.props.setAskedQuestions(question); this.props.deleteQuestion(question)}} key={question.questionID}>{question.question}</button>})}
                   </div>
                   <div className="to-ask">
-                    <h3 className="normal black">Order Asked</h3>
+                    <h3 className="normal black">Asked</h3>
                     {this.props.askedQuestions.length > 0 ? this.props.askedQuestions.map(question => <button className='askedColors' onClick={() => {this.props.setQuestion(question);}} key={question.questionID}>{question.question}</button>) : ''}
                   </div>
                 </div>
@@ -57,7 +58,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {setPresentation, setQuestion, setAskedQuestions, deleteQuestion}, dispatch);
+  return bindActionCreators( {setPresentation, setQuestion, setAskedQuestions, deleteQuestion, setShowAnswer}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Presenter);
