@@ -35,7 +35,7 @@ class Presentation extends Component {
           <div>
             <div>
                 <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
-                <div className="center"><p className="normal">Participants: {this.props.participant || 0}</p></div>
+                <div className="center"><p className="normal">Participants: {(this.props.participant && (this.props.participant > 0)) ? this.props.participant : 0}</p></div>
             </div>
 
             <div>
@@ -73,7 +73,7 @@ class Presentation extends Component {
             </div>
           ) : <div>
                 <div className="center"><p className="normal">Room Code: {this.props.params.socket}</p></div>
-                <div className="center"><p className="normal">Participants: {this.props.participant || 0}</p></div>
+                <div className="center"><p className="normal">Participants: {(this.props.participant && (this.props.participant > 0)) ? this.props.participant : 0}</p></div>
               </div>
         ) : <div className="center"><p className="normal">Not a valid session</p></div>
         ) : <div className="center"><p className="normal">Please login</p></div>}
