@@ -8,7 +8,7 @@ import { setAnswers, submitAnswer, showAnswer } from './answer';
 import { questions, askedQuestions } from './questions';
 import { audQuestions, submitAudQuestion, upvoteAudQuestion } from './audquestions';
 import { session, invalidRoom, presentation, pressession } from './session';
-import {participant} from './participant';
+import { participant } from './participant';
 
 
 export default combineReducers({
