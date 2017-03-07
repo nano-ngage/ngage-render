@@ -79,7 +79,7 @@ class Viewer extends Component {
             <div className="center-waiting">
               <p className="normal">Waiting for question...</p>
               <div className="center">
-                <img src="styles/ripple.gif" className="loading"/>
+                <img src="images/ripple.gif" className="loading"/>
               </div>
             </div>
           }
