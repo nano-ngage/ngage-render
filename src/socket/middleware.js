@@ -21,6 +21,7 @@ export function chatMiddleware(store) {
       fetch(url + '/sByS/' + action.session.socket)
         .then(data => data.json())
         .then(data => {
+          console.log(data);
           if (data !== -1) {
             var user = store.getState().user;
 
@@ -31,7 +32,7 @@ export function chatMiddleware(store) {
              });
             action.session.sessionID = data.sessionID;
             action.session.presentationTitle = data.title;
-            if ((user !== undefined) && (user.userID !== undefined) && (user.userID === data.userID)) {
+            if ((user) && (user.userID) && (user.userID === data.userID)) {
               browserHistory.push('/presenter');
             } else {
               browserHistory.push('/viewer');
