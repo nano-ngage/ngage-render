@@ -7,6 +7,7 @@ import { startPresSession } from '../actions/session';
 import { setResponse } from '../actions/response';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
+import isProfanity from '../helpers/isProfanity';
 
 class Presentation extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class Presentation extends Component {
           : <div className="response-container">
             {this.props.response.response ? (
             <div className="response-body">
-              {this.props.response.response.map(resp => {
+              {this.props.response.response.filter(resp => !isProfanity(resp.content)).map(resp => {
                 return <div className="viewPpt buttonColors animated slideIn"><span className="title">{'"' + resp.content + '"'}</span><span className="action">{'- ' + resp.rand}</span></div>
               })}
             </div>) : <div></div>}
