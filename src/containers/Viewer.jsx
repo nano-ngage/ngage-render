@@ -94,7 +94,7 @@ const mapStateToProps = state => {
   return {
     type: state.type,
     user: state.user,
-    answers: state.answer,
+    answers: state.setAnswers,
     qaModal: state.qaModal
   };
 }
