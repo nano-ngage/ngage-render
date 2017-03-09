@@ -59,6 +59,12 @@ class Viewer extends Component {
                               className="free-response"
                               type="text"
                               placeholder="Enter Response"
+                              onKeyPress={(e) => {if (e.which === 13) {
+                                this.props.submitAnswer({
+                                question: this.props.answers.question,
+                                answer: this.state.content
+                                })
+                              }}}
                               onInput={linkEvent(this, response)}
                             />
                             <button
