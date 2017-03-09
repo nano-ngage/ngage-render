@@ -19,6 +19,7 @@ class Modal extends Component {
     }
 
     this.handleToggle = this.handleToggle.bind(this);
+    this.sortQByUpvote = this.sortQByUpvote.bind(this);
   }
 
 
@@ -31,17 +32,23 @@ class Modal extends Component {
     });
   }
 
+  sortQByUpvote(a, b) {
+    return b.children.props.data.upvotes - a.children.props.data.upvotes;
+  }
+
   render() {
     let modalClasses = 'modal' + (this.state.active ? ' modal-' + this.state.modal : ' modal-closed')
     let overlayClasses = 'modal-overlay' + (this.state.active ? '' : ' modal-closed')
     let gutsClasses = 'modal-guts' + (this.state.modal === '' ? '' : ' modal-' + this.state.modal)
 
     let modalGuts;
-
     if (this.state.modal === 'question') {
       modalGuts = (<Ask />)
     } else if (this.state.modal === 'aud') {
-      modalGuts = (<List ulClass="modal-ul" items={this.props.audQuestions} itemType={Question}/>)
+      modalGuts = (<List ulClass="modal-ul"
+                         items={this.props.audQuestions}
+                         itemType={Question}
+                         sortBy={this.sortQByUpvote} />)
     } else {
       modalGuts = null;
     }
@@ -84,9 +91,6 @@ class Modal extends Component {
 
         <div className={overlayClasses} id="modal-overlay"></div>
       </div>
-
-
-
     );
   }
 }

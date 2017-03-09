@@ -23,7 +23,9 @@ export default class List extends Component {
         </li>
       );
     });
-
+    if (this.props.sortBy) {
+      markupItems.sort(this.props.sortBy)
+    }
     return markupItems;
   }
 }
