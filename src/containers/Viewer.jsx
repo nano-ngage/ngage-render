@@ -4,7 +4,7 @@ import Component from 'inferno-component';
 import { setPresenter, setViewer } from '../actions/type';
 import { setUser } from '../actions/user';
 import { setSession } from '../actions/session';
-import { setAnswer, submitAnswer } from '../actions/answer';
+import { submitAnswer } from '../actions/answer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
@@ -23,8 +23,6 @@ class Viewer extends Component {
   }
 
   render() {
-    let qaModal = this.props.qaModal ? (<Modal />) : null;
-
     return (
       <div className="viewer">
         <div className="content">
@@ -84,7 +82,7 @@ class Viewer extends Component {
             </div>
           }
         </div>
-        {qaModal}
+        <Modal />
       </div>
     )
   }
@@ -94,13 +92,12 @@ const mapStateToProps = state => {
   return {
     type: state.type,
     user: state.user,
-    answers: state.setAnswers,
-    qaModal: state.qaModal
+    answers: state.setAnswers
   };
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {setPresenter, setViewer, setUser, setAnswer, submitAnswer}, dispatch);
+  return bindActionCreators( { setPresenter, setViewer, setUser, submitAnswer }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Viewer);
