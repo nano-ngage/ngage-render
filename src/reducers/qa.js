@@ -1,9 +1,18 @@
-import { SETQAMODAL } from '../actions/qa';
+import { ENABLEASK, ENABLEAUDQ } from '../actions/qa';
 
-export default function qaModal(state = null, action) {
+export function askEnabled(state = null, action) {
   switch (action.type) {
-    case SETQAMODAL:
-      return state = action.qaModal;
+    case ENABLEASK:
+      return state = action.askEnabled;
+    default:
+      return state;
+  }
+}
+
+export function audQEnabled(state = null, action) {
+  switch (action.type) {
+    case ENABLEAUDQ:
+      return state = action.audQEnabled;
     default:
       return state;
   }
