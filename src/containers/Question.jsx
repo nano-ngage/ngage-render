@@ -14,7 +14,7 @@ class Question extends Component {
 
   handleUpvote(e) {
     e.preventDefault();
-    if (!this.props.data.liked) {
+    if (!this.props.data.upvoted) {
       this.props.upvoteAudQuestion(this.props.data);
     }
   }

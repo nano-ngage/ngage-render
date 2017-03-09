@@ -213,7 +213,7 @@ export default function (store) {
       audQuestions.forEach(audQ => {
         if (audQ.audQuestionID === data) {
           audQ.upvotes++;
-          audQ.liked = true;
+          audQ.upvoted = true;
         }
       });
 
