@@ -17,7 +17,6 @@ export function submitAnswer(answer) {
 }
 
 export function setShowAnswer(answer) {
-  console.log('show answer', answer);
   return {
     type: SHOWANSWER,
     answer: answer
