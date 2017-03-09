@@ -24,7 +24,7 @@ class Modal extends Component {
 
 
   handleToggle(e) {
-    const modal;
+    let modal;
     if (e) {
       e.preventDefault();
       modal = e.target.className === 'modal-button' ? '' : e.target.className
