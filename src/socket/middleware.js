@@ -59,8 +59,6 @@ export function chatMiddleware(store) {
         })
         .catch(err => { console.error('Oops, something went wrong', err); });
 
-
-
     } else if (socket && action.type === STARTPRES) {
 
       let room = store.getState().session.socket;
@@ -166,7 +164,6 @@ export default function (store) {
     });
 
     socket.on('answers', data => {
-      let state = store.getState();
       store.dispatch(setAnswers(data));
       data.answers.forEach(answer => { answer.count = 0; });
       store.dispatch(setResponse(data));
@@ -235,7 +232,6 @@ export default function (store) {
     });
 
     socket.on('addparticipant', data => {
-      // const participant = store.getState().participant;
       store.dispatch(addParticipant());
     });
 
