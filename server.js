@@ -12,6 +12,13 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
+app.get('*.css', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/css');
+  next();
+});
+
 // Static files to serve:
 app.use(express.static(path.join(__dirname, 'public')));
 
