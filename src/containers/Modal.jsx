@@ -80,30 +80,42 @@ class Modal extends Component {
       modalGuts = null;
     }
 
+    // Conditional rendering for the audience question count
     let mark;
-
     if (this.props.audQuestions && this.props.audQuestions.length !== 0) {
       mark = (<mark className="aud">{this.props.audQuestions.length}</mark>)
     } else {
       mark = null;
     }
 
+    // Conditional rendering for the modal dots
+    let dots = [];
+    if ((this.props.user && this.props.user.type === 0) || this.props.askEnabled) {
+      dots.push(
+        <li>
+          <a className="question" href="#" onClick={this.handleToggle}>
+            <span className="question"></span>
+          </a>
+        </li>
+      )
+    }
+    if ((this.props.user && this.props.user.type === 0) || this.props.audQEnabled) {
+      dots.push(
+        <li>
+          <a className="aud" href="#" onClick={this.handleToggle}>
+            <span className="aud">
+              {mark}
+            </span>
+          </a>
+        </li>
+      )
+    }
+
     return (
       <div className="modal-container">
         <div className="modal-list">
           <ul className="dots">
-            <li>
-              <a className="question" href="#" onClick={this.handleToggle}>
-                <span className="question"></span>
-              </a>
-            </li>
-            <li>
-              <a className="aud" href="#" onClick={this.handleToggle}>
-                <span className="aud">
-                  {mark}
-                </span>
-              </a>
-            </li>
+            {dots}
           </ul>
         </div>
 
@@ -127,7 +139,9 @@ class Modal extends Component {
 const mapStateToProps = state => {
   return {
     audQuestions: state.audQuestions,
-    user: state.user
+    user: state.user,
+    askEnabled: state.askEnabled,
+    audQEnabled: state.audQEnabled
   }
 }
 
