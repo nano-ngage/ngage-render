@@ -80,17 +80,22 @@ class Ask extends Component {
               </button>
             </div>
           </div>
-          <div className="modal-enable-audq">
-            <h3>Allow participants to see other audience questions?</h3>
-            <div className="modal-enable-buttons">
-              <button value={this.props.audQEnabled ? 'disableAudQ' : 'enableAudQ'}
-                      type="text"
-                      onClick={this.handleQAModal}>
-                {this.props.audQEnabled ? 'Hide Audience Questions' : 'Show Audience Questions'}
-              </button>
-            </div>
-          </div>
+          {
+            this.props.audQuestions.length !== 0 ? (
+              <div className="modal-enable-audq">
+                <h3>Allow participants to see other audience questions?</h3>
+                <div className="modal-enable-buttons">
+                  <button value={this.props.audQEnabled ? 'disableAudQ' : 'enableAudQ'}
+                          type="text"
+                          onClick={this.handleQAModal}>
+                    {this.props.audQEnabled ? 'Hide Audience Questions' : 'Show Audience Questions'}
+                  </button>
+                </div>
+              </div>
+            ) : null
+          }
         </div>
+
       )
     }
 
@@ -103,7 +108,8 @@ const mapStateToProps = state => {
     user: state.user,
     session: state.session,
     askEnabled: state.askEnabled,
-    audQEnabled: state.audQEnabled
+    audQEnabled: state.audQEnabled,
+    audQuestions: state.audQuestions
   };
 }
 
