@@ -4,6 +4,8 @@ var CompressionPlugin = require('compression-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+var CopyPlugin = require('copy-webpack-plugin');
+var ImageMinPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   entry: "./src/index.js",
@@ -51,5 +53,13 @@ module.exports = {
       filename: 'styles.css'
     }),
     new OptimizeCssAssetsPlugin(),
+    new CopyPlugin([
+      {
+        from: 'src/images/'
+      }
+    ]),
+    new ImageMinPlugin({
+      test: /\.jpe?g|png|gif|svg$/i
+    }),
   ]
 };
