@@ -24,8 +24,13 @@ class Modal extends Component {
 
 
   handleToggle(e) {
-    var modal = e.target.className === 'modal-button' ? '' : e.target.className
-    e.preventDefault();
+    const modal;
+    if (e) {
+      e.preventDefault();
+      modal = e.target.className === 'modal-button' ? '' : e.target.className
+    } else {
+      modal = ''
+    }
     this.setState({
       active: !this.state.active,
       modal: modal
@@ -43,7 +48,7 @@ class Modal extends Component {
 
     let modalGuts;
     if (this.state.modal === 'question') {
-      modalGuts = (<Ask />)
+      modalGuts = (<Ask handleToggle={this.handleToggle} />)
     } else if (this.state.modal === 'aud') {
       modalGuts = (<List ulClass="modal-ul"
                          items={this.props.audQuestions}
@@ -89,7 +94,9 @@ class Modal extends Component {
           </div>
         </div>
 
-        <div className={overlayClasses} id="modal-overlay"></div>
+        <div className={overlayClasses}
+             id="modal-overlay"
+             onClick={this.handleToggle}></div>
       </div>
     );
   }
