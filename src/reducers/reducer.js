@@ -3,7 +3,7 @@ import type from './type';
 import user from './user';
 import question from './question';
 import response from './response';
-import qaModal from './qa';
+import { askEnabled, audQEnabled } from './qa';
 import { setAnswers, submitAnswer, showAnswer } from './answer';
 import { questions, askedQuestions } from './questions';
 import { audQuestions, submitAudQuestion, upvoteAudQuestion } from './audquestions';
@@ -29,5 +29,6 @@ export default combineReducers({
   presentation,
   participant,
   response,
-  qaModal
+  askEnabled,
+  audQEnabled
 });
