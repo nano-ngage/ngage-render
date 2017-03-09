@@ -5,17 +5,17 @@ Sprite Sheet
 ----------------------------------------
 */
 .question {
-  background-image: url(/images/sprites.png);
+  background-image: url(/dist/sprites.png);
   background-position: -1px -50px;
 }
 
 .aud {
-  background-image: url(/images/sprites.png);
+  background-image: url(/dist/sprites.png);
   background-position: 1px 1px;
 }
 
 .like {
-  background-image: url(/images/sprites.png);
+  background-image: url(/dist/sprites.png);
   background-position: 40px -10px;
 }
 
