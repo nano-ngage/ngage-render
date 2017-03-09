@@ -86,6 +86,10 @@ ul.dots li mark {
   margin-top: 30vmin;
 }
 
+.modal-list-presenter {
+  margin-top: 0;
+}
+
 /*
 ----------------------------------------
 Modal Pop-up
@@ -274,6 +278,7 @@ li:last-child {
   width: 90%;
   align-self: center;
   text-align: center;
+  justify-content: center;
 
   color: #83CC6D;
   font-size: 3vw;
@@ -281,13 +286,55 @@ li:last-child {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.modal-enable {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modal-enable-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-enable-ask h3, .modal-enable-audq h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3vmin;
+  font-weight: 600;
+  color: #83CC6D;
+  text-align: center;
+}
+
+.modal-enable-buttons button {
+  height: 6vmin;
+  background-color: #83CC6D;
+  border: none;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px;
+  border-radius: 5px;
+  font-size: 2vmin;
+}
+
 /*
 ----------------------------------------
-Modal Specific CSS
+Conditional Modal Specific CSS
 ----------------------------------------
 */
 .modal.modal-question {
   height: 17vmin;
+}
+
+.modal.modal-question.modal-enable {
+  height: 35vmin;
+  top: 50vmin;
+}
+
+.modal.modal-aud.modal-enable {
+  top: 75vmin;
 }
 
 .modal.modal-aud {
@@ -300,6 +347,10 @@ Modal Specific CSS
 
 .modal.modal-aud.modal-noaudq {
   height: 17vmin;
+}
+
+.modal.modal-aud.modal-noaudq.modal-enable {
+  top: 32vmin;
 }
 
 .modal-guts.modal-aud.modal-noaudq {
