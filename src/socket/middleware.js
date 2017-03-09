@@ -4,8 +4,8 @@ import { setQuestions , setAskedQuestions } from '../actions/questions';
 import { setAudQuestions, SUBMITAUDQUESTION, UPVOTEAUDQUESTION } from '../actions/audquestions';
 import { setResponse } from '../actions/response';
 import { setAnswers, setShowAnswer, SUBMITANSWER, SHOWANSWER } from '../actions/answer';
-import { setQAModal, SETQAMODAL } from '../actions/qa';
 import { addParticipant } from '../actions/participants';
+import { enableAsk, enableAudQ, ENABLEASK, ENABLEAUDQ } from '../actions/qa';
 import io from 'socket.io-client';
 import 'whatwg-fetch';
 
@@ -17,13 +17,13 @@ export function chatMiddleware(store) {
   return next => action => {
     const result = next(action);
     if (socket && action.type === SESSION) {
-
       fetch(url + '/sByS/' + action.session.socket)
         .then(data => data.json())
         .then(data => {
           console.log(data);
           if (data !== -1) {
-            var user = store.getState().user;
+            const state = store.getState();
+            const user = state.user;
 
             socket.emit('subscribe', {
               room: action.session.socket,
@@ -32,7 +32,22 @@ export function chatMiddleware(store) {
              });
             action.session.sessionID = data.sessionID;
             action.session.presentationTitle = data.title;
-            if ((user) && (user.userID) && (user.userID === data.userID)) {
+
+            // update store with current enabled questions/audq
+            if (data.askEnabled !== state.askEnabled) {
+              store.dispatch(enableAsk(data.askEnabled));
+            }
+            if (data.audQEnabled !== state.audQEnabled) {
+              store.dispatch(enableAudQ(data.audQEnabled))
+            }
+
+            // Also grab existing audience questions
+            fetch(url + '/aqByS/' + action.session.sessionID)
+              .then(data => data.json())
+              .then(data => { store.dispatch(setAudQuestions(data)); })
+              .catch(err => { console.error('Oops, something went wrong', err); });
+
+            if (user && user.userID && (user.userID === data.userID)) {
               browserHistory.push('/presenter');
             } else {
               browserHistory.push('/viewer');
@@ -43,6 +58,8 @@ export function chatMiddleware(store) {
           }
         })
         .catch(err => { console.error('Oops, something went wrong', err); });
+
+
 
     } else if (socket && action.type === STARTPRES) {
 
@@ -120,11 +137,19 @@ export function chatMiddleware(store) {
         audQuestionID: action.audQuestion.audQuestionID
       });
 
-    } else if (socket && action.type === SETQAMODAL) {
+    } else if (socket && action.type === ENABLEASK) {
       let state = store.getState();
-      socket.emit('enableQA', {
+      socket.emit('enableAsk', {
         room: state.session.socket,
-        qaModal: action.qaModal
+        askEnabled: action.askEnabled,
+        sessionID: state.session.sessionID
+      });
+    } else if (socket && action.type === ENABLEAUDQ) {
+      let state = store.getState();
+      socket.emit('enableAudQ', {
+        room: state.session.socket,
+        audQEnabled: action.audQEnabled,
+        sessionID: state.session.sessionID
       });
     }
     return result;
@@ -141,6 +166,7 @@ export default function (store) {
     });
 
     socket.on('answers', data => {
+      let state = store.getState();
       store.dispatch(setAnswers(data));
       data.answers.forEach(answer => { answer.count = 0; });
       store.dispatch(setResponse(data));
@@ -174,16 +200,10 @@ export default function (store) {
     });
 
     socket.on('audquestions', data => {
-      const audQuestions = store.getState().audQuestions || [];
-
-      if (audQuestions.length === 0) {
-        audQuestions.push(data);
-        store.dispatch(setAudQuestions(audQuestions))
-      } else {
-        const newAudQuestions = audQuestions.slice()
-        newAudQuestions.push(data)
-        store.dispatch(setAudQuestions(newAudQuestions));
-      }
+      const audQuestions = store.getState().audQuestions;
+      const newAudQuestions = audQuestions.slice()
+      newAudQuestions.push(data)
+      store.dispatch(setAudQuestions(newAudQuestions));
 
     });
 
@@ -193,14 +213,25 @@ export default function (store) {
       audQuestions.forEach(audQ => {
         if (audQ.audQuestionID === data) {
           audQ.upvotes++;
+          audQ.liked = true;
         }
       });
 
       store.dispatch(setAudQuestions(audQuestions))
     });
 
-    socket.on('qamodal', data => {
-      store.dispatch(setQAModal(data));
+    socket.on('askenabled', data => {
+      let state = store.getState();
+      if (state.askEnabled !== data) {
+        store.dispatch(enableAsk(data));
+      }
+    });
+
+    socket.on('audqenabled', data => {
+      let state = store.getState();
+      if (state.audQEnabled !== data) {
+        store.dispatch(enableAudQ(data));
+      }
     });
 
     socket.on('addparticipant', data => {
