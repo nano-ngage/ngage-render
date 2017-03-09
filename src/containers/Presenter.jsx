@@ -33,6 +33,15 @@ class Presenter extends Component {
               </div>
             ) :
             (
+              <div className="center">
+              <div className="presenter-header">
+                <br/>Current Question: 
+                <div>{this.props.question === null ? 'Please Select Question' : 
+                <div className="center">{this.props.question.question}{this.props.question.type === 1? 
+                  <button className="button show-answer" onClick={() => 
+                    {this.props.setShowAnswer(this.props.question.questionID)}}>Show Answer</button> : ''}</div>}</div>
+                </div>
+
               <div className="questions">
                 <div className="normal black">
                   Current Question:
@@ -51,6 +60,7 @@ class Presenter extends Component {
                         </button> : ''}
                     </div>}
                   </div>
+
                 <div className="questions-container">
                   <div className="to-ask">
                     <h3 className="normal black">Queue</h3>
@@ -71,6 +81,7 @@ class Presenter extends Component {
                     {this.props.askedQuestions.length > 0 ? this.props.askedQuestions.map(question => <button className='askedColors' onClick={() => {this.props.setQuestion(question);}} key={question.questionID}>{question.question}</button>) : ''}
                   </div>
                 </div>
+              </div>
               </div>
             )
           }
