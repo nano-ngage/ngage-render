@@ -1,6 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var CompressionPlugin = require('compression-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -17,7 +20,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ['style-loader', 'css-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       }
     ]
   },
@@ -25,6 +31,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'DBIP': JSON.stringify(process.env.DBIP || '104.131.147.199'),
       'DBPORT': JSON.stringify(process.env.DBPORT || 5000),
@@ -40,5 +47,9 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
+    new ExtractTextPlugin({
+      filename: 'styles.css'
+    }),
+    new OptimizeCssAssetsPlugin(),
   ]
 };
