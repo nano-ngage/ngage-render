@@ -54,7 +54,7 @@
   },
   "scripts": {
     "prebuild": "rimraf public/dist",
-    "build": "webpack --env.prod -p --watch",
+    "build": "webpack --env.prod -p",
     "prebuild:dev": "rimraf public/dist",
     "build:dev": "webpack --env.dev --watch",
     "start": "nodemon server.js"
