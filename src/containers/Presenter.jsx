@@ -35,38 +35,20 @@ class Presenter extends Component {
             (
               <div className="center">
               <div className="presenter-header">
-                <br/>Current Question: 
-                <div>{this.props.question === null ? 'Please Select Question' : 
+                <div><br/>Current: <br/>
+                {this.props.question === null ? 'Please Select Question' : 
                 <div className="center">{this.props.question.question}{this.props.question.type === 1? 
                   <button className="button show-answer" onClick={() => 
                     {this.props.setShowAnswer(this.props.question.questionID)}}>Show Answer</button> : ''}</div>}</div>
                 </div>
 
               <div className="questions">
-                <div className="normal black">
-                  Current Question:
-                </div>
-                <div className="q-title">
-                  {this.props.question === null ?
-                    'Please Select Question' :
-                    <div className="current-question">
-                      {this.props.question.question}{this.props.question.type === 1 ?
-                        <button
-                          className="button show-answer"
-                          onClick={() => {
-                            this.props.setShowAnswer(this.props.question.questionID)
-                          }}>
-                          Show Answer
-                        </button> : ''}
-                    </div>}
-                  </div>
-
                 <div className="questions-container">
                   <div className="to-ask">
                     <h3 className="normal black">Queue</h3>
                     {this.props.questions.map(question => {
                       return <button
-                                dclassName='questionButtons buttonColors'
+                                className='questionButtons buttonColors'
                                 onClick={() => {
                                   this.props.setQuestion(question);
                                   this.props.setAskedQuestions(question);
@@ -106,16 +88,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Presenter);
-
-//<button key={question.id}>{question.question}</button>
-
-// Single column questions
-// <div className="question-container">
-//                   {this.props.questions.map(question => {
-//                     if (i < 4) {
-//                       i++;
-//                     } else {
-//                       i = 1;
-//                     }
-//                     return <button className='questionButtons' style={"background-color: "+ colors[i - 1]} onClick={() => {this.props.setQuestion(question)}} key={question.questionID}>{question.question}</button>})}
-//                 </div>

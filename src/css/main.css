@@ -508,12 +508,8 @@ form {
   width: 90%;
 }
 
-body, html {
-  height: 100%;
-}
-
 .participants {
-  border-radius: 200px;
+  border-radius: 2100%;
   background-color: #83CC6D;
   height: 9vmin;
   width: 9vmin;
@@ -532,8 +528,8 @@ body, html {
 .presenter-header {
   border-radius: 200px;
   background-color: #83CC6D;
-  height: 35vmin;
-  width: 35vmin;
+  height: 32vmin;
+  width: 32vmin;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
@@ -543,7 +539,23 @@ body, html {
   justify-content: space-around;
   align-items: space-around;
   flex-wrap: wrap;
-  padding: 5vmin;
-  margin-top: 3vmin;
+  padding: 1vmin 2vmin 2vmin 2vmin;
+  margin-top: -5vmin;
   margin-bottom: -5vmin;
+}
+@media screen and (max-width: 700px) {
+  .questions {
+    width: 96vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
+  }
+  .to-ask {
+    flex: 1;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
+  }
+  .presenter-header {
+    font-size: 1rem !important;
+    padding: 0vmin 1vmin 2vmin 1vmin;
+  }
 }

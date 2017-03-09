@@ -43,8 +43,8 @@ ul.dots a:hover {
 }
 
 ul.dots li {
-  margin-left: 5vw;
-  margin-right: 5.5vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
   position: relative;
 }
 
@@ -218,7 +218,9 @@ Modal Pop-up
 
   list-style-type: none;
 }
-
+.modal-container {
+  margin-top: -4vmin;
+}
 .modal-ul li {
   width: 93%;
   border-bottom: 1px solid #b3acac;
