@@ -42,18 +42,40 @@ class Modal extends Component {
   }
 
   render() {
-    let modalClasses = 'modal' + (this.state.active ? ' modal-' + this.state.modal : ' modal-closed')
-    let overlayClasses = 'modal-overlay' + (this.state.active ? '' : ' modal-closed')
-    let gutsClasses = 'modal-guts' + (this.state.modal === '' ? '' : ' modal-' + this.state.modal)
+    // Conditional Modal CSS classes
+    let modalClasses = 'modal' + (this.state.active ? ' modal-' + this.state.modal : ' modal-closed');
+    let overlayClasses = 'modal-overlay' + (this.state.active ? '' : ' modal-closed');
+    let gutsClasses = 'modal-guts' + (this.state.modal === '' ? '' : ' modal-' + this.state.modal);
+    if (modalClasses === 'modal modal-aud' && (this.props.audQuestions && this.props.audQuestions.length === 0)) {
+      modalClasses += ' modal-noaudq';
+      gutsClasses += ' modal-noaudq';
+    }
+    let modalListClass;
+    if (this.props.user) {
+      modalListClass = this.props.user.type === 0 ? 'modal-list-presenter' : 'modal-list';
+      modalClasses = this.props.user.type === 0 ? modalClasses + ' modal-enable' : modalClasses;
+    } else {
+      modalListClass = 'modal-list'
+    }
 
+    // Conditional Modal Guts CSS classes
     let modalGuts;
     if (this.state.modal === 'question') {
       modalGuts = (<Ask handleToggle={this.handleToggle} />)
     } else if (this.state.modal === 'aud') {
-      modalGuts = (<List ulClass="modal-ul"
-                         items={this.props.audQuestions}
-                         itemType={Question}
-                         sortBy={this.sortQByUpvote} />)
+      if (this.props.audQuestions && this.props.audQuestions.length !== 0) {
+        modalGuts = (<List ulClass="modal-ul"
+                           items={this.props.audQuestions}
+                           itemType={Question}
+                           sortBy={this.sortQByUpvote}/>)
+      } else {
+        modalGuts = (
+          <div className="noaudq">
+            {!this.props.user || this.props.user.type === 1 ?
+              'There are currently no audience questions. Be the first to ask a question!' :
+              'No one has asked a question yet!'}
+          </div>)
+      }
     } else {
       modalGuts = null;
     }
@@ -104,7 +126,8 @@ class Modal extends Component {
 
 const mapStateToProps = state => {
   return {
-    audQuestions: state.audQuestions
+    audQuestions: state.audQuestions,
+    user: state.user
   }
 }
 
