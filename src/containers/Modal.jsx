@@ -113,7 +113,7 @@ class Modal extends Component {
 
     return (
       <div className="modal-container">
-        <div className="modal-list">
+        <div className={modalListClass}>
           <ul className="dots">
             {dots}
           </ul>
