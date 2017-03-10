@@ -1,7 +1,7 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 
-import { upvoteAudQuestion } from '../actions/audquestions';
+import { upvoteAudQuestion, audQuestionUpvoted } from '../actions/audquestions';
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,8 +14,9 @@ class Question extends Component {
 
   handleUpvote(e) {
     e.preventDefault();
-    if (!this.props.data.upvoted) {
+    if (!this.props.upvotedAudQuestions.includes(this.props.data.audQuestionID)) {
       this.props.upvoteAudQuestion(this.props.data);
+      this.props.audQuestionUpvoted(this.props.data.audQuestionID);
     }
   }
 
@@ -41,12 +42,13 @@ class Question extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    session: state.session
+    session: state.session,
+    upvotedAudQuestions: state.upvotedAudQuestions
   };
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators( { upvoteAudQuestion }, dispatch);
+  return bindActionCreators( { upvoteAudQuestion, audQuestionUpvoted }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
