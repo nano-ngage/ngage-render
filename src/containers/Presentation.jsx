@@ -50,12 +50,12 @@ class Presentation extends Component {
             <div className="chart-display">
               <div className="zoom answerbox">
               <div className="white">{this.props.response.question.question}</div>
-                <svg class="chart" width="420" height={this.props.response.answers.length*20}>
+                <svg class="chart" width="520" height={this.props.response.answers.length*20}>
                   {this.props.response.answers.map((answer, index) => {
                     total += answer.count;
                     return <g class={answer.answerID + " answersColors"}  transform={"translate(0," + 20*index + ")"}>
-                    <rect width={(20 + answer.count * 30).toString()} height="19"></rect>
-                    <text x={(25 + answer.count * 30).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;-&nbsp;{answer.count} </text></g>})}
+                    <rect width={(10 + answer.count * 10).toString()} height="19"></rect>
+                    <text x={(15 + answer.count * 10).toString()} y="9.5" dy=".35em">{answer.answer}&nbsp;:&nbsp;{answer.count} </text></g>})}
                 </svg>
                 <div className="white">Total Responses: {total}</div>
               </div>
