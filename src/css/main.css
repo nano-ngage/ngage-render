@@ -76,7 +76,8 @@
   border: 0;
 }
 .answerButtons {
-  display: flex;
+
+  text-align: center;
   justify-content: center;
   align-items: center;
   height: 30vmin;
