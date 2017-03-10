@@ -20,7 +20,6 @@ export function chatMiddleware(store) {
       fetch(url + '/sByS/' + action.session.socket)
         .then(data => data.json())
         .then(data => {
-          console.log(data);
           if (data !== -1) {
             const state = store.getState();
             const user = state.user;
@@ -210,7 +209,6 @@ export default function (store) {
       audQuestions.forEach(audQ => {
         if (audQ.audQuestionID === data) {
           audQ.upvotes++;
-          audQ.upvoted = true;
         }
       });
 
